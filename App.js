@@ -7,6 +7,7 @@ import { styles } from './Styles'
 export default function App() {
 
   const [text, setText] = useState('')
+  const [Description, setDescription] = useState('')
   const [Tasks, setTasks] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
   const [AddedTask, setAddedTask] = useState(false)
@@ -14,7 +15,8 @@ export default function App() {
   useEffect(() => {
     const loadData = async () => {
       const saved = await AsyncStorage.getItem("tarefas")
-      if (saved) setTasks(oficialText => [...oficialText, saved])
+      const value = JSON.parse(saved)
+      if (value) setTasks(task => [...task, value])
     }
     loadData()
   }, [AddedTask])
@@ -27,7 +29,9 @@ export default function App() {
             key={i} 
             style={styles.task}
           >
-            - {task}
+            - {task.text}
+            {'\n'}
+            {task.Description}
           </Text>
         ))}
         <Pressable
@@ -43,7 +47,7 @@ export default function App() {
         <Modal
             style={styles.modal}
             animationType="slide"
-            transparent={true}
+            transparent={false}
             visible={modalVisible}
             onRequestClose={() => {
               Alert.alert('Modal has been closed.')
@@ -51,15 +55,22 @@ export default function App() {
         }}>
             <TextInput
               style={{height: 40, padding: 5}}
-              placeholder="Minha nova tarefa"
+              placeholder="Título"
               onChangeText={newText => {
                 setText(newText)
+              }}            
+            />
+            <TextInput
+              style={{height: 40, padding: 5}}
+              placeholder="Descrição"
+              onChangeText={newText => {
+                setDescription(newText)
               }}            
             />
             <Button
               title="Adicionar tarefa"
               onPress={() => {
-                AsyncStorage.setItem('tarefas', text)
+                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description}))
                 setAddedTask(!AddedTask)
               }}       
             />

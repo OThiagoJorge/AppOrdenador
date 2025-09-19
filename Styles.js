@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
-    height: 300
+    backgroundColor: 'white'
   },
   task: {
     fontSize: 30,
