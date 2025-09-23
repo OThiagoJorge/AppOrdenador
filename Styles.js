@@ -30,5 +30,10 @@ export const styles = StyleSheet.create({
   task: {
     fontSize: 30,
     marginTop: 20
+  },
+  description: {
+    fontSize: 20,
+    margin: 20,
+    height: 300,
   }
 })

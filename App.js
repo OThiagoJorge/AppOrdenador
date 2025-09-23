@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar'
-import { ScrollView, Text, View, Button, Alert, TextInput, Modal, Pressable } from 'react-native'
-import React, {useState, useEffect} from 'react'
+import { ScrollView, Text, View, Modal, Pressable } from 'react-native'
+import React, {useState, useEffect, createContext} from 'react'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { styles } from './Styles'
+import { AddTasks } from './AddTasks'
 
-export default function App() {
+export const TaskContext = createContext(null)
 
-  const [text, setText] = useState('')
+export const App = () => {
+
+  const [AddedTask, setAddedTask] = useState(false)
   const [Description, setDescription] = useState('')
   const [Tasks, setTasks] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
-  const [AddedTask, setAddedTask] = useState(false)
+  const [DescriptionVisibility, setDescriptionVisibility] = useState(false)
 
   useEffect(() => {
     const loadData = async () => {
@@ -22,66 +25,47 @@ export default function App() {
   }, [AddedTask])
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <View style={styles.container}>
-        {Tasks.map((task, i) => (
-          <Text 
-            key={i} 
-            style={styles.task}
-          >
-            - {task.text}
-            {'\n'}
-            {task.Description}
-          </Text>
-        ))}
-        <Pressable
+    <TaskContext value={{AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription}}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+        <View style={styles.container}>
+          {Tasks.map((task, i) => (
+            <Pressable 
+              key={i} 
+              style={styles.task}
+              onPress={() => {
+                setDescriptionVisibility(!DescriptionVisibility)
+                setDescription(task.Description)
+              }}
+            >
+              <Text>- {task.text}</Text>
+            </Pressable>
+          ))}
+          {DescriptionVisibility ? 
+            <Modal
+              style={styles.description}
+            >
+              <Text style={styles.description}>{Description}</Text>
+              <Pressable
+                onPress={() => setDescriptionVisibility(!DescriptionVisibility)}
+              >
+                <Text>fechar</Text>
+              </Pressable> 
+            </Modal>
+          : 
+          null}
+          <Pressable
             title="+"
             onPress={() => {
               setModalVisible(!modalVisible)
-            }
-            }
+            }}
             style={styles.button}
-        >
-          <Text style={styles.text}>Nova tarefa</Text>  
-        </Pressable>
-        <Modal
-            style={styles.modal}
-            animationType="slide"
-            transparent={false}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.')
-              setModalVisible(!modalVisible)
-        }}>
-            <TextInput
-              style={{height: 40, padding: 5}}
-              placeholder="Título"
-              onChangeText={newText => {
-                setText(newText)
-              }}            
-            />
-            <TextInput
-              style={{height: 40, padding: 5}}
-              placeholder="Descrição"
-              onChangeText={newText => {
-                setDescription(newText)
-              }}            
-            />
-            <Button
-              title="Adicionar tarefa"
-              onPress={() => {
-                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description}))
-                setAddedTask(!AddedTask)
-              }}       
-            />
-            <Pressable
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text>fechar</Text>
-            </Pressable>
-        </Modal>
-        <StatusBar style="auto" />
-      </View>
-    </ScrollView>
+          >
+            <Text style={styles.text}>Nova tarefa</Text>  
+          </Pressable>
+          <AddTasks />
+          <StatusBar style="auto" />
+        </View>
+      </ScrollView>
+    </TaskContext>
   )
 }
