@@ -20,10 +20,19 @@
         "foregroundImage": "./assets/adaptative-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.thiago0.AppOrdenador"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-notifications"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5ca0f81a-e7e0-4f1c-b4df-203757233c67"
+      }
     }
   }
 }

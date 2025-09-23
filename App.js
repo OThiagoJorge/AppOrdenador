@@ -4,6 +4,7 @@ import React, {useState, useEffect, createContext} from 'react'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { styles } from './Styles'
 import { AddTasks } from './AddTasks'
+import { MyPushNotifications } from './Notifications'
 
 export const TaskContext = createContext(null)
 
@@ -63,6 +64,7 @@ export const App = () => {
             <Text style={styles.text}>Nova tarefa</Text>  
           </Pressable>
           <AddTasks />
+          <MyPushNotifications />
           <StatusBar style="auto" />
         </View>
       </ScrollView>
