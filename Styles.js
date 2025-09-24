@@ -6,19 +6,22 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative'
   },
   button: {
-    width: 150,
-    height: 150,
-    backgroundColor: 'blue',
-    borderRadius: 50
+    width: '100%',
+    height: 75,
+    backgroundColor: '#2196F3',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1
   },
   text: {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
-    lineHeight: 150
+    textAlign: 'center'
   },
   modal: {
     flex: 1,

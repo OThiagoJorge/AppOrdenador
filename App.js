@@ -27,33 +27,35 @@ export const App = () => {
 
   return (
     <TaskContext value={{AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription}}>
-      <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
         <View style={styles.container}>
-          {Tasks.map((task, i) => (
-            <Pressable 
-              key={i} 
-              style={styles.task}
-              onPress={() => {
-                setDescriptionVisibility(!DescriptionVisibility)
-                setDescription(task.Description)
-              }}
-            >
-              <Text>- {task.text}</Text>
-            </Pressable>
-          ))}
-          {DescriptionVisibility ? 
-            <Modal
-              style={styles.description}
-            >
-              <Text style={styles.description}>{Description}</Text>
-              <Pressable
-                onPress={() => setDescriptionVisibility(!DescriptionVisibility)}
+          <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+            {Tasks.map((task, i) => (
+              <Pressable 
+                key={i} 
+                style={styles.task}
+                onPress={() => {
+                  setDescriptionVisibility(!DescriptionVisibility)
+                  setDescription(task.Description)
+                }}
               >
-                <Text>fechar</Text>
-              </Pressable> 
-            </Modal>
-          : 
-          null}
+                <Text>- {task.text}</Text>
+              </Pressable>
+            ))}
+            {DescriptionVisibility ? 
+              <Modal
+                style={styles.description}
+              >
+                <Text style={styles.description}>{Description}</Text>
+                <Pressable
+                  onPress={() => setDescriptionVisibility(!DescriptionVisibility)}
+                >
+                  <Text>fechar</Text>
+                </Pressable> 
+              </Modal>
+            : 
+            null}
+            <StatusBar style="auto" />
+          </ScrollView>
           <Pressable
             title="+"
             onPress={() => {
@@ -61,13 +63,11 @@ export const App = () => {
             }}
             style={styles.button}
           >
-            <Text style={styles.text}>Nova tarefa</Text>  
+            <Text style={styles.text}>+ Nova tarefa</Text>  
           </Pressable>
-          <AddTasks />
           <MyPushNotifications />
-          <StatusBar style="auto" />
+          <AddTasks />
         </View>
-      </ScrollView>
     </TaskContext>
   )
 }

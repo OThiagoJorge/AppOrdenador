@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { View, Button } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { registerForPushNotificationsAsync, sendPushNotification } from './NotificationsConfig'
+import { styles } from './Styles';
 
 export const MyPushNotifications = () => {
     const [expoPushToken, setExpoPushToken] = useState('');
@@ -27,13 +28,13 @@ export const MyPushNotifications = () => {
     }, []);
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
-            <Button
-                title="Press to Send Notification"
-                onPress={async () => {
-                    await sendPushNotification(expoPushToken);
-                }}
-            />
-        </View>
+        <Pressable
+            style={styles.button}
+            onPress={async () => {
+                await sendPushNotification(expoPushToken);
+            }}
+        >
+            <Text style={styles.text}>Notificar</Text>
+        </Pressable>
     );
 }
