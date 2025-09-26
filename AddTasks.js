@@ -21,30 +21,31 @@ export const AddTasks = () => {
         setModalVisible(!modalVisible)
     }}>
         <TextInput
-        style={{height: 40, padding: 5}}
-        placeholder="Título"
-        onChangeText={newText => {
-            setText(newText)
-        }}            
+            style={{height: 40, padding: 5}}
+            placeholder="Título"
+            onChangeText={newText => {
+                setText(newText)
+            }}            
         />
         <TextInput
-        style={{height: 40, padding: 5}}
-        placeholder="Descrição"
-        onChangeText={newText => {
-            setDescription(newText)
-        }}            
+            style={{height: 40, padding: 5}}
+            placeholder="Descrição"
+            onChangeText={newText => {
+                setDescription(newText)
+            }}            
         />
         <Button
-        title="Adicionar tarefa"
-        onPress={() => {
-            AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description}))
-            setAddedTask(!AddedTask)
-        }}       
+            title="Adicionar tarefa"
+            onPress={() => {
+                let id = Math.floor(Math.random() * 1000)
+                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description, id: id}))
+                setAddedTask(!AddedTask)
+            }}       
         />
         <Pressable
-        onPress={() => setModalVisible(!modalVisible)}
-        >
-        <Text>fechar</Text>
+            onPress={() => setModalVisible(!modalVisible)}
+            >
+            <Text>fechar</Text>
         </Pressable>
     </Modal>
 )}

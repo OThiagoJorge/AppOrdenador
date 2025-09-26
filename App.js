@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import { styles } from './Styles'
 import { AddTasks } from './AddTasks'
 import { MyPushNotifications } from './Notifications'
+import { Checkbox } from 'expo-checkbox'
 
 export const TaskContext = createContext(null)
 
@@ -15,6 +16,7 @@ export const App = () => {
   const [Tasks, setTasks] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
   const [DescriptionVisibility, setDescriptionVisibility] = useState(false)
+  const [isChecked, setChecked] = useState([])
 
   useEffect(() => {
     const loadData = async () => {
@@ -39,6 +41,17 @@ export const App = () => {
                 }}
               >
                 <Text>- {task.text}</Text>
+                <Checkbox
+                  style={styles.checkbox}
+                  value={isChecked[task.id]}
+                  onValueChange={() => {
+                    let newChecked = [...isChecked]
+                    newChecked[task.id] = !newChecked[task.id]
+                    setChecked(newChecked)
+                    return newChecked
+                  }}
+                  color={isChecked ? '#4630EB' : undefined}
+                />
               </Pressable>
             ))}
             {DescriptionVisibility ? 
