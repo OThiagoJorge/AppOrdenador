@@ -29,58 +29,61 @@ export const App = () => {
 
   return (
     <TaskContext value={{AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription}}>
-        <View style={styles.container}>
-          <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
-            {Tasks.map((task, i) => (
-              <Pressable 
-                key={i} 
-                style={styles.task}
+      <View style={styles.container}>
+        <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+          {Tasks.map((task, i) => (
+            <View 
+              style={styles.task}
+              key={i}
+            >
+              <Pressable  
                 onPress={() => {
                   setDescriptionVisibility(!DescriptionVisibility)
                   setDescription(task.Description)
                 }}
               >
-                <Text>- {task.text}</Text>
-                <Checkbox
-                  style={styles.checkbox}
-                  value={isChecked[task.id]}
-                  onValueChange={() => {
-                    let newChecked = [...isChecked]
-                    newChecked[task.id] = !newChecked[task.id]
-                    setChecked(newChecked)
-                    return newChecked
-                  }}
-                  color={isChecked ? '#4630EB' : undefined}
-                />
+                <Text style={{textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', fontSize: 20}}>- {task.text}</Text>
               </Pressable>
-            ))}
-            {DescriptionVisibility ? 
-              <Modal
-                style={styles.description}
+              <Checkbox
+                style={styles.checkbox}
+                value={isChecked[task.id]}
+                onValueChange={() => {
+                  let newChecked = [...isChecked]
+                  newChecked[task.id] = !newChecked[task.id]
+                  setChecked(newChecked)
+                  return newChecked
+                }}
+                color={isChecked ? '#4630EB' : undefined}
+              />
+            </View>
+          ))}
+          {DescriptionVisibility ? 
+            <Modal
+              style={styles.description}
+            >
+              <Text style={styles.description}>{Description}</Text>
+              <Pressable
+                onPress={() => setDescriptionVisibility(!DescriptionVisibility)}
               >
-                <Text style={styles.description}>{Description}</Text>
-                <Pressable
-                  onPress={() => setDescriptionVisibility(!DescriptionVisibility)}
-                >
-                  <Text>fechar</Text>
-                </Pressable> 
-              </Modal>
-            : 
-            null}
-            <StatusBar style="auto" />
-          </ScrollView>
-          <Pressable
-            title="+"
-            onPress={() => {
-              setModalVisible(!modalVisible)
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.text}>+ Nova tarefa</Text>  
-          </Pressable>
-          <MyPushNotifications />
-          <AddTasks />
-        </View>
+                <Text>fechar</Text>
+              </Pressable> 
+            </Modal>
+          : 
+          null}
+          <StatusBar style="auto" />
+        </ScrollView>
+        <Pressable
+          title="+"
+          onPress={() => {
+            setModalVisible(!modalVisible)
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.text}>+ Nova tarefa</Text>  
+        </Pressable>
+        <MyPushNotifications />
+        <AddTasks />
+      </View>
     </TaskContext>
   )
 }
