@@ -31,15 +31,16 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   task: {
-    fontSize: 30,
-    marginTop: 20,
+    fontSize: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    padding: 15,
+    padding: 20,
     backgroundColor: '#f8f8f8',
-    width: '100%'
+    width: '100%',
+    borderBottomColor: '#eee',
+    borderBottomWidth: 7
   },
   description: {
     fontSize: 20,

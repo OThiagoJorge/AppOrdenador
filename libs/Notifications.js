@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Pressable, Text } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { registerForPushNotificationsAsync, sendPushNotification } from './NotificationsConfig'
-import { styles } from './Styles';
+import { styles } from '../Styles';
 
 export const MyPushNotifications = () => {
     const [expoPushToken, setExpoPushToken] = useState('');

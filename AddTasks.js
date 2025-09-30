@@ -1,12 +1,12 @@
 import { Text, Button, Alert, TextInput, Modal, Pressable } from 'react-native'
 import React, {useState, useContext} from 'react'
-import { TaskContext } from './App'
+import { GlobalContext } from './Context'
 import { styles } from './Styles'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export const AddTasks = () => {
 
-    const {AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription} = useContext(TaskContext)
+    const {AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription} = useContext(GlobalContext)
 
     const [text, setText] = useState('')
 
