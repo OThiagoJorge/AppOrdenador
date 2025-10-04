@@ -36,18 +36,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    padding: 20,
+    padding: 50,
     backgroundColor: '#f8f8f8',
     width: '100%',
-    borderBottomColor: '#eee',
-    borderBottomWidth: 7
+    flexGrow: 1
   },
   description: {
     fontSize: 20,
-    margin: 20,
-    height: 300,
+    backgroundColor: 'white'
   },
   checkbox: {
     margin: 8,
+  },
+   pagerView: {
+    flex: 1,
   }
 })
