@@ -1,8 +1,8 @@
 import { Text, Pressable, View } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
-import { styles } from './Styles'
+import { styles } from '../Styles'
 import { Checkbox } from 'expo-checkbox'
-import { GlobalContext } from './Context'
+import { GlobalContext } from '../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  PagerView  from 'react-native-pager-view'
 
@@ -47,6 +47,6 @@ export const Tasks = () => {
                     </Pressable>
                 </View>
             ))}
-    </PagerView>
+        </PagerView>
     )
 }

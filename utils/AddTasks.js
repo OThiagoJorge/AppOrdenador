@@ -1,10 +1,12 @@
-import { Text, Button, Alert, TextInput, Modal, Pressable } from 'react-native'
+import { Text, Button, TextInput, Modal, Pressable } from 'react-native'
 import React, {useState, useContext} from 'react'
-import { GlobalContext } from './Context'
-import { styles } from './Styles'
+import { GlobalContext } from '../Context'
+import { styles } from '../Styles'
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useNavigation } from '@react-navigation/native'
 
 export const AddTasks = () => {
+     const navigation = useNavigation()
 
     const {AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription} = useContext(GlobalContext)
 
@@ -17,7 +19,6 @@ export const AddTasks = () => {
         transparent={false}
         visible={modalVisible}
         onRequestClose={() => {
-        Alert.alert('Modal has been closed.')
         setModalVisible(!modalVisible)
     }}>
         <TextInput
@@ -33,6 +34,10 @@ export const AddTasks = () => {
             onChangeText={newText => {
                 setDescription(newText)
             }}            
+        />
+        <Button
+            title="Ir para o calendário"
+            onPress={() => navigation.navigate('Calendar')} 
         />
         <Button
             title="Adicionar tarefa"

@@ -11,35 +11,42 @@ export const styles = StyleSheet.create({
   button: {
     width: '100%',
     height: 75,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#f3f4f6',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1
   },
   text: {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    borderWidth: 0,
+    borderRadius: 25,
+    padding: 10,
+    width: '90%',
+    backgroundColor: '#0a7e8c'
   },
   modal: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderWidth: 0
   },
   task: {
     fontSize: 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomWidth: 1,
     padding: 50,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#fff',
     width: '100%',
-    flexGrow: 1
+    flexGrow: 1,
+    marginVertical: 10,
+    borderBottomWidth: 10,
+    borderColor: '#d1d5db'
   },
   description: {
     fontSize: 20,
@@ -49,6 +56,6 @@ export const styles = StyleSheet.create({
     margin: 8,
   },
    pagerView: {
-    flex: 1,
+    flex: 1
   }
 })
