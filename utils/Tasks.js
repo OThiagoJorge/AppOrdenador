@@ -37,44 +37,41 @@ export const Tasks = () => {
             ref={refPagerView}
         >
             {Tasks.map((task, i) => (
-                <View key={i}>
+                <View 
+                    style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
+                    key={i}
+                >
+                    <Pressable
+                        style={{
+                            borderRadius: 25,
+                            borderWidth: 0,
+                            padding: 10,
+                            color: 'white',
+                            opacity: isChecked[task.id] ? 1 : 0,
+                            position: 'absolute',
+                            right: 5,
+                            top: 5,
+                            zIndex: 1,
+                            transition: '7s'
+                        }}
+                    >
+                        <AnimatedCircularProgress
+                            duration={7000}
+                            size={55}
+                            width={5}
+                            fill={isChecked[task.id] ? 100 : 0}
+                            tintColor="#00e0ff"
+                            onAnimationComplete={() => console.log('onAnimationComplete')}
+                            backgroundColor="transparent"
+                        >
+                        </AnimatedCircularProgress>
+                    </Pressable>
                     <Pressable
                         style={[
                             styles.task,
                             {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
                         ]}
                     >
-                        <Pressable
-                            style={{
-                                borderRadius: 25,
-                                borderWidth: 0,
-                                padding: 10,
-                                color: 'white',
-                                opacity: isChecked[task.id] ? 1 : 0
-                            }} 
-                            onPress={() => {
-                                const id = task.id
-                                Tasks.map((task) => {
-                                    if (task.id === id) {
-                                        Tasks.splice(Tasks.indexOf(task), 1)
-                                    }
-                                })
-                                AsyncStorage.setItem('tarefas', JSON.stringify(Tasks))
-                                setAddedTask(!AddedTask)
-
-                            }}
-                        >
-                            <AnimatedCircularProgress
-                                duration={7000}
-                                size={60}
-                                width={5}
-                                fill={isChecked[task.id] ? 100 : 0}
-                                tintColor="#00e0ff"
-                                onAnimationComplete={() => console.log('onAnimationComplete')}
-                                backgroundColor="transparent"
-                            >
-                            </AnimatedCircularProgress>
-                        </Pressable>
                         <Text style={{
                             textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
                             fontSize: 20
