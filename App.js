@@ -4,16 +4,34 @@ import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CalendarScreen } from './utils/Calendar'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Text } from 'react-native'
+import { Pressable, Text } from 'react-native'
+import React, { useState } from 'react'
+import { View } from 'react-native'
 
 const LogoTitle = () => {
-    const date = new Date()
-    const day = date.getDate()
+    const [date, setDate] = useState(new Date())
+    const [day, setDay] = useState(date.getDate())
+
     const month = date.getMonth() + 1
     const year = date.getFullYear()
     const fullDate = `${day}/${month}/${year}`
+
     return (
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{fullDate}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+          <Pressable onPress={() => {
+            setDay(date.getDate() - 1)
+            alert(date.getDate())
+          }}>
+            <Text style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}> {'<'} </Text>
+          </Pressable>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>{fullDate}</Text>
+          <Pressable onPress={() => {
+            setDay(date.getDate() + 1)
+            alert(date.getDate())
+          }}>
+            <Text style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}> {'>'} </Text>
+          </Pressable>
+        </View>
     )
 }
 
