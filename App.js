@@ -5,31 +5,34 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CalendarScreen } from './utils/Calendar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Pressable, Text } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
 const LogoTitle = () => {
-    const [date, setDate] = useState(new Date())
-    const [day, setDay] = useState(date.getDate())
-
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-    const fullDate = `${day}/${month}/${year}`
+    const todaysDate = new Date()
+    const [date, setDate] = useState(todaysDate.getTime())
 
     return (
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
           <Pressable onPress={() => {
-            setDay(date.getDate() - 1)
-            alert(date.getDate())
+            setDate(date - 86400000)
+            alert(date)
           }}>
-            <Text style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}> {'<'} </Text>
+            <Text 
+              style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}> 
+              {'<'} 
+            </Text>
           </Pressable>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>{fullDate}</Text>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>15/11/2025</Text>
           <Pressable onPress={() => {
-            setDay(date.getDate() + 1)
-            alert(date.getDate())
+            setDate(date + 86400000)
+            alert(date)
           }}>
-            <Text style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}> {'>'} </Text>
+            <Text 
+              style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
+            >
+              {'>'} 
+            </Text>
           </Pressable>
         </View>
     )
