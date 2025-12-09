@@ -1,12 +1,12 @@
-import { Text, Pressable, View, Button } from 'react-native'
+import { Text, Pressable, View } from 'react-native'
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import { styles } from '../Styles'
 import { Checkbox } from 'expo-checkbox'
 import { GlobalContext } from '../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  PagerView  from 'react-native-pager-view'
-import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import { ProgressRotation } from './ProgressRotation'
 
 export const Tasks = () => {
     const refPagerView = useRef(null)
@@ -17,7 +17,7 @@ export const Tasks = () => {
 
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
     const {isChecked, setChecked} = useContext(GlobalContext)
-    
+
     const [Tasks, setTasks] = useState([])
 
     useEffect(() => {
@@ -42,31 +42,7 @@ export const Tasks = () => {
                     style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
                     key={i}
                 >
-                    <Pressable
-                        style={{
-                            borderRadius: 25,
-                            borderWidth: 0,
-                            padding: 10,
-                            color: 'white',
-                            opacity: isChecked[task.id] ? 1 : 0,
-                            position: 'absolute',
-                            right: 5,
-                            top: 5,
-                            zIndex: 1,
-                            transition: '7s'
-                        }}
-                    >
-                        <AnimatedCircularProgress
-                            duration={7000}
-                            size={55}
-                            width={5}
-                            fill={isChecked[task.id] ? 100 : 0}
-                            tintColor="#00e0ff"
-                            onAnimationComplete={() => console.log('onAnimationComplete')}
-                            backgroundColor="transparent"
-                        >
-                        </AnimatedCircularProgress>
-                    </Pressable>
+                    <ProgressRotation task={task} />
                     <Pressable
                         style={[
                             styles.task,
@@ -79,7 +55,7 @@ export const Tasks = () => {
                         }}>
                             - {task.text}{'\n'}{task.Description}
                         </Text>
-                        <View>
+                        <View style={{alignItems: 'center', justifyContent: 'center', width: '15%'}}>
                             <Checkbox
                                 style={styles.checkbox}
                                 value={isChecked[task.id]}
@@ -93,7 +69,23 @@ export const Tasks = () => {
                                 }}
                                 color={isChecked ? '#4630EB' : undefined}
                             />
-                            <Pressable style={{borderWidth: 2, borderRadius: 25, padding: 5, marginTop: 10}}>
+                            <Pressable 
+                                style={{
+                                    width: '100%', 
+                                    borderWidth: 2, 
+                                    borderRadius: 0, 
+                                    padding: 5, 
+                                    marginTop: 10, 
+                                    alignContent: 'center', 
+                                    alignItems: 'center', 
+                                    backgroundColor: 'white'
+                                }}
+                                onPress={() => {
+                                    let id = Math.floor(Math.random() * 1000)
+                                    AsyncStorage.setItem('tarefas', JSON.stringify({text: 'Tarefa', Description: 'Description', id: id}))
+                                    setAddedTask(!AddedTask)
+                            }} 
+                            >
                                 <MaterialCommunityIcons name="plus-minus-variant" size={24} color="black" />
                             </Pressable>
                         </View>
