@@ -1,4 +1,4 @@
-import { Text, Pressable, View } from 'react-native'
+import { Text, Pressable, View, Button } from 'react-native'
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import { styles } from '../Styles'
 import { Checkbox } from 'expo-checkbox'
@@ -6,6 +6,7 @@ import { GlobalContext } from '../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  PagerView  from 'react-native-pager-view'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 export const Tasks = () => {
     const refPagerView = useRef(null)
@@ -15,8 +16,8 @@ export const Tasks = () => {
     }
 
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
-
-    const [isChecked, setChecked] = useState([])
+    const {isChecked, setChecked} = useContext(GlobalContext)
+    
     const [Tasks, setTasks] = useState([])
 
     useEffect(() => {
@@ -78,19 +79,24 @@ export const Tasks = () => {
                         }}>
                             - {task.text}{'\n'}{task.Description}
                         </Text>
-                        <Checkbox
-                            style={styles.checkbox}
-                            value={isChecked[task.id]}
-                            onValueChange={() => {
-                                let newChecked = [...isChecked]
-                                newChecked[task.id] = !newChecked[task.id]
-                                setChecked(newChecked)
-                                setTimeout(() => {
-                                    goToAnotherPage(i + 1)
-                                }, 7000)
-                            }}
-                            color={isChecked ? '#4630EB' : undefined}
-                        />
+                        <View>
+                            <Checkbox
+                                style={styles.checkbox}
+                                value={isChecked[task.id]}
+                                onValueChange={() => {
+                                    let newChecked = [...isChecked]
+                                    newChecked[task.id] = !newChecked[task.id]
+                                    setChecked(newChecked)
+                                    setTimeout(() => {
+                                        goToAnotherPage(i + 1)
+                                    }, 7000)
+                                }}
+                                color={isChecked ? '#4630EB' : undefined}
+                            />
+                            <Pressable style={{borderWidth: 2, borderRadius: 25, padding: 5, marginTop: 10}}>
+                                <MaterialCommunityIcons name="plus-minus-variant" size={24} color="black" />
+                            </Pressable>
+                        </View>
                     </Pressable>
                 </View>
             ))}
