@@ -16,6 +16,7 @@ export const Tasks = () => {
 
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
     const {isChecked, setChecked} = useContext(GlobalContext)
+    const {isListOrPage, setIsListOrPage} = useContext(GlobalContext)
 
     const [Tasks, setTasks] = useState([])
 
@@ -29,6 +30,7 @@ export const Tasks = () => {
         console.log(Tasks)
     }, [AddedTask])
 
+    if(isListOrPage){
     return (
         <PagerView 
             style={styles.pagerView} 
@@ -65,5 +67,39 @@ export const Tasks = () => {
                 </View>
             ))}
         </PagerView>
-    )
+    )} else {
+        return (
+            // Verificar por que o estilo buga ao tentar abstrair esse trecho repetitivo do código
+            <View>
+                {Tasks.map((task, i) => (
+                    <View 
+                        style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
+                        key={i}
+                    >
+                        <ProgressRotation task={task} />
+                        <Pressable
+                            style={[
+                                styles.task,
+                                {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
+                            ]}
+                        >
+                            <Text style={{
+                                textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
+                                fontSize: 20
+                            }}>
+                                - {task.text}{'\n'}{task.Description}
+                            </Text>
+                            <CheckOrHalfCheck 
+                                isChecked={isChecked} 
+                                setChecked={setChecked} 
+                                task={task} 
+                                goToAnotherPage={goToAnotherPage}
+                                i={i}
+                            />
+                        </Pressable>
+                    </View>
+                ))}
+            </View>
+        )
+    }
 }

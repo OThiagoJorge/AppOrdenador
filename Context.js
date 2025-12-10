@@ -8,13 +8,15 @@ export const ContextProvider = ({children}) => {
     const [Description, setDescription] = useState('')
     const [modalVisible, setModalVisible] = useState(false)
     const [isChecked, setChecked] = useState([])
+    const [isListOrPage, setIsListOrPage] = useState(false)
 
     return (
         <GlobalContext value={{
             AddedTask, setAddedTask, 
             modalVisible, setModalVisible, 
             Description, setDescription, 
-            isChecked, setChecked
+            isChecked, setChecked,
+            isListOrPage, setIsListOrPage
         }}>
             {children}
         </GlobalContext>
