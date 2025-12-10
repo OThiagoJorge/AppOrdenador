@@ -55,7 +55,16 @@ export const Tasks = () => {
                         }}>
                             - {task.text}{'\n'}{task.Description}
                         </Text>
-                        <View style={{alignItems: 'center', justifyContent: 'center', width: '15%'}}>
+                        {/* {Para modularizar o trecho de código abaixo para CheckOrHalfCheck, resolva a questão de useRef que manipula a 
+                        página para mudá-la, e que está atrelada ao componente principal. Esse é o maior empecilho} */}
+                        <View style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '17%',
+                            backgroundColor: '#E0E0E0',
+                            borderRadius: 25,
+                            padding: 5
+                        }}>
                             <Checkbox
                                 style={styles.checkbox}
                                 value={isChecked[task.id]}
@@ -67,7 +76,7 @@ export const Tasks = () => {
                                         goToAnotherPage(i + 1)
                                     }, 7000)
                                 }}
-                                color={isChecked ? '#4630EB' : undefined}
+                                color={isChecked ? '#4630EB' : '#fff'}
                             />
                             <Pressable 
                                 style={{
@@ -82,11 +91,15 @@ export const Tasks = () => {
                                 }}
                                 onPress={() => {
                                     let id = Math.floor(Math.random() * 1000)
-                                    AsyncStorage.setItem('tarefas', JSON.stringify({text: 'Tarefa', Description: 'Description', id: id}))
+                                    AsyncStorage.setItem('tarefas', JSON.stringify({text: task.text + ' parte 2', Description: task.Description, id: id}))
                                     setAddedTask(!AddedTask)
                             }} 
                             >
-                                <MaterialCommunityIcons name="plus-minus-variant" size={24} color="black" />
+                                <MaterialCommunityIcons 
+                                    name="plus-minus-variant" 
+                                    size={24} 
+                                    color="black" 
+                                />
                             </Pressable>
                         </View>
                     </Pressable>

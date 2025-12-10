@@ -29,7 +29,11 @@ const LogoTitle = () => {
             <Text 
               style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
             > 
-              <SimpleLineIcons name="arrow-left-circle" size={24} color="black" />
+              <SimpleLineIcons 
+                name="arrow-left-circle" 
+                size={24} 
+                color="black" 
+              />
             </Text>
           </Pressable>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
@@ -42,7 +46,11 @@ const LogoTitle = () => {
             <Text 
               style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
             >
-              <SimpleLineIcons name="arrow-right-circle" size={24} color="black" /> 
+              <SimpleLineIcons 
+                name="arrow-right-circle" 
+                size={24} 
+                color="black" 
+              /> 
             </Text>
           </Pressable>
         </View>
