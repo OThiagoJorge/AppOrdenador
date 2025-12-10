@@ -8,8 +8,9 @@ import { Pressable, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-const LogoTitle = () => {
+const UpperBar = () => {
     const [date, setDate] = useState(new Date())
 
     const formatDate = (d) => {
@@ -37,6 +38,9 @@ const LogoTitle = () => {
             </Text>
           </Pressable>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
+            <Pressable style={{position: 'absolute', right: 40}}>
+              <FontAwesome name="list" size={24} color="black" />
+            </Pressable>
           <Pressable onPress={() => {
             const newDate = new Date(date)
             newDate.setDate(newDate.getDate() + 1)
@@ -71,7 +75,7 @@ const RootStack = createNativeStackNavigator({
     Home: {
       screen: HomeScreen,
       options: {
-        headerTitle: (props) => <LogoTitle {...props} />,
+        headerTitle: (props) => <UpperBar {...props} />,
       },
     },
     Calendar: CalendarScreen
