@@ -1,11 +1,10 @@
-import { Text, Pressable, View } from 'react-native'
+import { Text, Pressable, View, ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import { styles } from '../Styles'
 import { GlobalContext } from '../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  PagerView  from 'react-native-pager-view'
-import { ProgressRotation } from './ProgressRotation'
-import { CheckOrHalfCheck } from './CheckOrHalfCheck'
+import { TaskCard } from './TaskCard'
 
 export const Tasks = () => {
     const refPagerView = useRef(null)
@@ -39,47 +38,26 @@ export const Tasks = () => {
             ref={refPagerView}
         >
             {Tasks.map((task, i) => (
-                <View 
-                    style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
+                <TaskCard 
                     key={i}
-                >
-                    <ProgressRotation task={task} />
-                    <Pressable
-                        style={[
-                            styles.task,
-                            {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
-                        ]}
-                    >
-                        <Text style={{
-                            textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                            fontSize: 20
-                        }}>
-                            - {task.text}{'\n'}{task.Description}
-                        </Text>
-                        <CheckOrHalfCheck 
-                            isChecked={isChecked} 
-                            setChecked={setChecked} 
-                            task={task} 
-                            goToAnotherPage={goToAnotherPage}
-                            i={i}
-                        />
-                    </Pressable>
-                </View>
+                    task={task}
+                    isChecked={isChecked}
+                    setChecked={setChecked}
+                    goToAnotherPage={goToAnotherPage}
+                    i={i}
+                />
             ))}
         </PagerView>
     )} else {
         return (
-            // Verificar por que o estilo buga ao tentar abstrair esse trecho repetitivo do código
-            <View>
+            <ScrollView style={styles.scrollView}>
                 {Tasks.map((task, i) => (
                     <View 
                         style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
                         key={i}
                     >
-                        <ProgressRotation task={task} />
                         <Pressable
                             style={[
-                                styles.task,
                                 {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
                             ]}
                         >
@@ -89,17 +67,10 @@ export const Tasks = () => {
                             }}>
                                 - {task.text}{'\n'}{task.Description}
                             </Text>
-                            <CheckOrHalfCheck 
-                                isChecked={isChecked} 
-                                setChecked={setChecked} 
-                                task={task} 
-                                goToAnotherPage={goToAnotherPage}
-                                i={i}
-                            />
                         </Pressable>
                     </View>
                 ))}
-            </View>
+            </ScrollView>
         )
     }
 }

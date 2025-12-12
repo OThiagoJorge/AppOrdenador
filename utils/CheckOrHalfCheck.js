@@ -10,6 +10,8 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
     return (
         <View style={{
+            position: 'absolute',
+            right: 10,
             alignItems: 'center',
             justifyContent: 'center',
             width: '17%',
@@ -35,7 +37,7 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                 style={{
                     width: '100%', 
                     borderWidth: 2, 
-                    borderRadius: 0, 
+                    borderRadius: 25, 
                     padding: 5, 
                     marginTop: 10, 
                     alignContent: 'center', 

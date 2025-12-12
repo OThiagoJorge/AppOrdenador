@@ -35,15 +35,19 @@ export const AddTasks = () => {
                 setDescription(newText)
             }}            
         />
+        <Text>Exibir todos os dias</Text>
         <Button
-            title="Ir para o calendário"
+            title="Selecionar datas"
             onPress={() => navigation.navigate('Calendar')} 
         />
+        {/* No caso do botão abaixo, foi adicionado o campo "EveryDay", por padrão como "true", o que significa
+        que qualquer que seja a data selecionada posterior ao dia em que a tarefa foi criada, ela será exibida */}
+        {/* Modificar ese "Description para ser minúsculo, porque eu tenho TOC" */}
         <Button
             title="Adicionar tarefa"
             onPress={() => {
                 let id = Math.floor(Math.random() * 1000)
-                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description, id: id}))
+                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description, id: id, everyDay: true, todaysDate: new Date()}))
                 setAddedTask(!AddedTask)
             }}       
         />
