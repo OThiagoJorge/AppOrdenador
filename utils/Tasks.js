@@ -15,7 +15,8 @@ export const Tasks = () => {
 
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
     const {isChecked, setChecked} = useContext(GlobalContext)
-    const {isListOrPage, setIsListOrPage} = useContext(GlobalContext)
+    const {isCard, setIsCard} = useContext(GlobalContext)
+    const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
 
     const [Tasks, setTasks] = useState([])
 
@@ -29,25 +30,25 @@ export const Tasks = () => {
         console.log(Tasks)
     }, [AddedTask])
 
-    if(isListOrPage){
-    return (
-        <PagerView 
-            style={styles.pagerView} 
-            initialPage={0}
-            orientation='vertical'
-            ref={refPagerView}
-        >
-            {Tasks.map((task, i) => (
-                <TaskCard 
-                    key={i}
-                    task={task}
-                    isChecked={isChecked}
-                    setChecked={setChecked}
-                    goToAnotherPage={goToAnotherPage}
-                    i={i}
-                />
-            ))}
-        </PagerView>
+    if(isCard && !arrowIsClicked) {
+        return (
+            <PagerView 
+                style={styles.pagerView} 
+                initialPage={0}
+                orientation='vertical'
+                ref={refPagerView}
+            >
+                {Tasks.map((task, i) => (
+                    <TaskCard 
+                        key={i}
+                        task={task}
+                        isChecked={isChecked}
+                        setChecked={setChecked}
+                        goToAnotherPage={goToAnotherPage}
+                        i={i}
+                    />
+                ))}
+            </PagerView>
     )} else {
         return (
             <ScrollView style={styles.scrollView}>
@@ -65,7 +66,7 @@ export const Tasks = () => {
                                 textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
                                 fontSize: 20
                             }}>
-                                - {task.text}{'\n'}{task.Description}
+                                - {task.text}{'\n'}{task.description}
                             </Text>
                         </Pressable>
                     </View>

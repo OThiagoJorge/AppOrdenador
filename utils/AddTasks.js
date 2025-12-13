@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 export const AddTasks = () => {
      const navigation = useNavigation()
 
-    const {AddedTask, setAddedTask, modalVisible, setModalVisible, Description, setDescription} = useContext(GlobalContext)
+    const {AddedTask, setAddedTask, modalVisible, setModalVisible, description, setDescription} = useContext(GlobalContext)
 
     const [text, setText] = useState('')
 
@@ -42,12 +42,12 @@ export const AddTasks = () => {
         />
         {/* No caso do botão abaixo, foi adicionado o campo "EveryDay", por padrão como "true", o que significa
         que qualquer que seja a data selecionada posterior ao dia em que a tarefa foi criada, ela será exibida */}
-        {/* Modificar ese "Description para ser minúsculo, porque eu tenho TOC" */}
+        {/* Modificar ese "description para ser minúsculo, porque eu tenho TOC" */}
         <Button
             title="Adicionar tarefa"
             onPress={() => {
                 let id = Math.floor(Math.random() * 1000)
-                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, Description: Description, id: id, everyDay: true, todaysDate: new Date()}))
+                AsyncStorage.setItem('tarefas', JSON.stringify({text: text, description: description, id: id, everyDay: true, todaysDate: new Date()}))
                 setAddedTask(!AddedTask)
             }}       
         />

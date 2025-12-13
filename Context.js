@@ -8,7 +8,8 @@ export const ContextProvider = ({children}) => {
     const [Description, setDescription] = useState('')
     const [modalVisible, setModalVisible] = useState(false)
     const [isChecked, setChecked] = useState([])
-    const [isListOrPage, setIsListOrPage] = useState(false)
+    const [isCard, setIsCard] = useState(false)
+    const [arrowIsClicked, setArrowIsClicked] = useState(false)
 
     return (
         <GlobalContext value={{
@@ -16,7 +17,8 @@ export const ContextProvider = ({children}) => {
             modalVisible, setModalVisible, 
             Description, setDescription, 
             isChecked, setChecked,
-            isListOrPage, setIsListOrPage
+            isCard, setIsCard,
+            arrowIsClicked, setArrowIsClicked
         }}>
             {children}
         </GlobalContext>
