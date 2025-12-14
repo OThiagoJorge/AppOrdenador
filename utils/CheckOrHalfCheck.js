@@ -1,10 +1,10 @@
 import {  Pressable, View } from 'react-native'
 import React, { useContext } from 'react'
 import { styles } from '../Styles'
-import { Checkbox } from 'expo-checkbox'
 import { GlobalContext } from '../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import BouncyCheckbox from "react-native-bouncy-checkbox"
 
 export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, i}) => {
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
@@ -20,10 +20,10 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
             borderRadius: 30,
             padding: 2
         }}>
-            <Checkbox
+            <BouncyCheckbox 
                 style={styles.checkbox}
-                value={isChecked[task.id]}
-                onValueChange={() => {
+                isChecked={isChecked[task.id]}
+                onPress={() => {
                     let newChecked = [...isChecked]
                     newChecked[task.id] = !newChecked[task.id]
                     setChecked(newChecked)
@@ -32,6 +32,7 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     }, 7000)
                 }}
                 color={isChecked ? '#4630EB' : '#fff'}
+                size={40}
             />
             <Pressable 
                 style={{

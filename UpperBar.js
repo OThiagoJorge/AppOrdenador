@@ -4,8 +4,11 @@ import React, { useState, useContext } from 'react'
 import { View } from 'react-native'
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { useNavigation } from '@react-navigation/native'
 
 export const UpperBar = () => {
+    const navigation = useNavigation()
+
     const {isCard, setIsCard} = useContext(GlobalContext)
     const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
 
@@ -20,7 +23,8 @@ export const UpperBar = () => {
 
     return (
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Pressable onPress={() => {
+          <Pressable 
+            onPress={() => {
             const newDate = new Date(date)
             newDate.setDate(newDate.getDate() - 1)
             setDate(newDate)
@@ -36,6 +40,12 @@ export const UpperBar = () => {
               />
             </Text>
           </Pressable>
+          <Pressable 
+              style={{position: 'absolute', left: 40}}
+              onPress={() => navigation.navigate('Calendar')} 
+            >
+              <FontAwesome name="calendar" size={24} color="black" />
+            </Pressable>
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
             <Pressable 
               style={{position: 'absolute', right: 40}}
@@ -45,7 +55,8 @@ export const UpperBar = () => {
             >
               <FontAwesome name="list" size={24} color="black" />
             </Pressable>
-          <Pressable onPress={() => {
+          <Pressable 
+            onPress={() => {
             const newDate = new Date(date)
             newDate.setDate(newDate.getDate() + 1)
             setDate(newDate)
