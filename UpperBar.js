@@ -22,6 +22,7 @@ export const UpperBar = () => {
     }
 
     return (
+        // Fazer com quequando muito distante da data atual, clicando em onLongPress, volte para a data atual
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
           <Pressable 
             onPress={() => {

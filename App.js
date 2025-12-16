@@ -6,7 +6,6 @@ import { CalendarScreen } from './utils/Calendar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { UpperBar } from './UpperBar'
 
-
 export const HomeScreen = () => {
     return (
       <Main />
