@@ -33,6 +33,7 @@ export const CalendarScreen = () => {
                         return task.everyDay === true
                     })
                     console.log('Tasks for selected day:', todayTasks)
+                    navigation.navigate('Home')
             }}
             />
             <Button

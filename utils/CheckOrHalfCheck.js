@@ -1,4 +1,4 @@
-import {  Pressable, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import React, { useContext } from 'react'
 import { styles } from '../Styles'
 import { GlobalContext } from '../Context'
@@ -34,7 +34,6 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                 fillColor='#0a7e8c'
                 size={40}
             />
-            {/* Usar icone modificado de https://www.flaticon.com/free-icon/plus-minus-sign_18154349 */}
             <Pressable 
                 style={{
                     width: '100%', 

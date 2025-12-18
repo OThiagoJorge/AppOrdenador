@@ -14,21 +14,6 @@ export const Main = () => {
   return (
       <>
         <StatusBar style={'auto'} />
-        {/* <Pressable
-          style={{
-            width: '100%',
-            height: 75,
-            backgroundColor: '#2196F3',
-            display: 'flex',
-            alignItems: 'center',
-            borderWidth: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 15
-          }}
-        >
-          <Text style={styles.text}>Barra superior</Text>
-        </Pressable> */}
         <Tasks />
         <Pressable
           title="+"

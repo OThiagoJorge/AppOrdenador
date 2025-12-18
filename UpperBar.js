@@ -22,7 +22,8 @@ export const UpperBar = () => {
     }
 
     return (
-        // Fazer com quequando muito distante da data atual, clicando em onLongPress, volte para a data atual
+        // Para simplificar melhor, porteriormente crie dois componentes a parte para ArrowLeft e ArrowRight
+        // Fazer com que quando muito distante da data atual, clicando em onLongPress, volte para a data atual
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
           <Pressable 
             onPress={() => {
@@ -46,16 +47,16 @@ export const UpperBar = () => {
               onPress={() => navigation.navigate('Calendar')} 
             >
               <FontAwesome name="calendar" size={24} color="black" />
-            </Pressable>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
-            <Pressable 
-              style={{position: 'absolute', right: 40}}
-              onPress={() => {
-                setIsCard(!isCard)
-              }}
-            >
-              <FontAwesome name="list" size={24} color="black" />
-            </Pressable>
+          </Pressable>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
+          <Pressable 
+            style={{position: 'absolute', right: 40}}
+            onPress={() => {
+              setIsCard(!isCard)
+            }}
+          >
+            <FontAwesome name="list" size={24} color="black" />
+          </Pressable>
           <Pressable 
             onPress={() => {
             const newDate = new Date(date)

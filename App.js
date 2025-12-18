@@ -19,6 +19,7 @@ const RootStack = createNativeStackNavigator({
       screen: HomeScreen,
       options: {
         headerTitle: (props) => <UpperBar {...props} />,
+        headerBackVisible: false
       },
     },
     Calendar: CalendarScreen
