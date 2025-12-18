@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CalendarScreen } from './utils/Calendar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { UpperBar } from './UpperBar'
+import { MenuProvider } from 'react-native-popup-menu'
 
 export const HomeScreen = () => {
     return (
@@ -31,9 +32,11 @@ const Navigation = createStaticNavigation(RootStack)
 export default function App() {
   return (
     <ContextProvider>
-      <SafeAreaView style={{flex: 1, backgroundColor: '#f3f4f6', borderWidth: 0}}>
-        <Navigation />
-      </SafeAreaView>
+      <MenuProvider>
+        <SafeAreaView style={{flex: 1, backgroundColor: '#f3f4f6', borderWidth: 0}}>
+          <Navigation />
+        </SafeAreaView>
+      </MenuProvider>
     </ContextProvider>
   )
 }
