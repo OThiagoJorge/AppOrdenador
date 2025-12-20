@@ -5,87 +5,100 @@ import { View } from 'react-native'
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native'
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu'
+import Feather from '@expo/vector-icons/Feather'
 
 const ArrowLeft = () => {
     return (
-        <Pressable 
-            onPress={() => {
-            const newDate = new Date(date)
-            newDate.setDate(newDate.getDate() - 1)
-            setDate(newDate)
-            setArrowIsClicked(!arrowIsClicked)
-          }}>
-            <Text 
-              style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
-            > 
-              <SimpleLineIcons 
-                name="arrow-left-circle" 
-                size={24} 
-                color="black" 
-              />
-            </Text>
-        </Pressable>
+      <Pressable 
+        onPress={() => {
+        const newDate = new Date(date)
+        newDate.setDate(newDate.getDate() - 1)
+        setDate(newDate)
+        setArrowIsClicked(!arrowIsClicked)
+      }}>
+        <Text 
+          style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
+        > 
+          <SimpleLineIcons 
+            name="arrow-left-circle" 
+            size={24} 
+            color="black" 
+          />
+        </Text>
+      </Pressable>
     )
 }
 
 const ArrowRight = () => {
     return (
-        <Pressable 
-            onPress={() => {
-            const newDate = new Date(date)
-            newDate.setDate(newDate.getDate() + 1)
-            setDate(newDate)
-            setArrowIsClicked(!arrowIsClicked)
-          }
-          }>
-            <Text 
-              style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
-            >
-              <SimpleLineIcons 
-                name="arrow-right-circle" 
-                size={24} 
-                color="black" 
-              /> 
-            </Text>
-          </Pressable>
+      <Pressable 
+        onPress={() => {
+          const newDate = new Date(date)
+          newDate.setDate(newDate.getDate() + 1)
+          setDate(newDate)
+          setArrowIsClicked(!arrowIsClicked)
+        }
+      }>
+        <Text 
+          style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
+        >
+          <SimpleLineIcons 
+            name="arrow-right-circle" 
+            size={24} 
+            color="black" 
+          /> 
+        </Text>
+      </Pressable>
     )
 }
 
 export const UpperBar = () => {
-    const navigation = useNavigation()
+  const navigation = useNavigation()
 
-    const {isCard, setIsCard} = useContext(GlobalContext)
-    const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
+  const {isCard, setIsCard} = useContext(GlobalContext)
+  const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
 
-    const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date())
 
-    const formatDate = (d) => {
-      const day = String(d.getDate()).padStart(2, "0")
-      const month = String(d.getMonth() + 1).padStart(2, "0")
-      const year = d.getFullYear()
-      return `${day}/${month}/${year}`
-    }
+  const formatDate = (d) => {
+    const day = String(d.getDate()).padStart(2, "0")
+    const month = String(d.getMonth() + 1).padStart(2, "0")
+    const year = d.getFullYear()
+    return `${day}/${month}/${year}`
+  }
 
-    return (
-        // Fazer com que quando muito distante da data atual, clicando em onLongPress, volte para a data atual
-        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-          <ArrowLeft />
-          <Pressable 
-              style={{position: 'absolute', left: 40}}
-              onPress={() => navigation.navigate('Calendar')} 
-            >
-              <FontAwesome name="calendar" size={24} color="black" />
-          </Pressable>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
-          <Pressable 
-            style={{position: 'absolute', right: 40}}
-            onPress={() => {
-              setIsCard(!isCard)
-            }}
-          >
-            <FontAwesome name="list" size={24} color="black" />
-          </Pressable>
-          <ArrowRight />
-        </View>
-    )
+  return (
+      // Fazer com que quando muito distante da data atual, clicando em onLongPress, volte para a data atual
+    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+      <ArrowLeft/>
+      <Pressable 
+        style={{position: 'absolute', left: 40}}
+        onPress={() => {
+          setIsCard(!isCard)
+        }}
+      >
+        <FontAwesome name="list" size={24} color="black" />
+      </Pressable>
+      <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
+      <Pressable 
+        style={{position: 'absolute', right: 40}}
+      >
+        <Menu>
+          <MenuTrigger>
+            <Feather name="more-horizontal" size={24} color="black" />
+          </MenuTrigger>
+          <MenuOptions style={{padding: 15}}>
+            <MenuOption onSelect={() => navigation.navigate('Calendar')} text='Calendário' />
+          </MenuOptions>
+        </Menu>
+      </Pressable>
+      <ArrowRight />
+    </View>
+  )
 }
