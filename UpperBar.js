@@ -12,12 +12,12 @@ import {
 } from 'react-native-popup-menu'
 import Feather from '@expo/vector-icons/Feather'
 import { ArrowLeft, ArrowRight } from './UpperArrows'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 export const UpperBar = () => {
   const navigation = useNavigation()
 
   const {isCard, setIsCard} = useContext(GlobalContext)
-  const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
 
   const [date, setDate] = useState(new Date())
 
@@ -41,9 +41,17 @@ export const UpperBar = () => {
           setIsCard(!isCard)
         }}
       >
-        <FontAwesome name="list" size={24} color="black" />
+        {isCard ? 
+          <FontAwesome name="list" size={24} color="black" /> 
+        : 
+          <MaterialCommunityIcons name="mirror-rectangle" size={24} color="black" />
+        }
       </Pressable>
-      <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
+      <Pressable
+        onPress={() => navigation.navigate('Calendar')}
+      >
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
+      </Pressable>
       <Pressable 
         style={{position: 'absolute', right: 40}}
       >

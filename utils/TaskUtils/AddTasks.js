@@ -1,7 +1,7 @@
 import { Text, Button, TextInput, Modal, Pressable } from 'react-native'
 import React, {useState, useContext} from 'react'
-import { GlobalContext } from '../Context'
-import { styles } from '../Styles'
+import { GlobalContext } from '../../Context'
+import { styles } from '../../Styles'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useNavigation } from '@react-navigation/native'
 
