@@ -1,9 +1,8 @@
-import { Pressable, View } from 'react-native'
+import { Pressable, View, Image } from 'react-native'
 import React, { useContext } from 'react'
 import { styles } from '../Styles'
 import { GlobalContext } from '../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import BouncyCheckbox from "react-native-bouncy-checkbox"
 
 export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, i}) => {
@@ -14,11 +13,11 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
             right: 10,
             alignItems: 'center',
             justifyContent: 'center',
-            width: '17%',
+            width: 45,
             borderColor: 'black',
             borderWidth: 2,
             borderRadius: 30,
-            padding: 2
+            padding: 0
         }}>
             <BouncyCheckbox 
                 style={styles.checkbox}
@@ -37,9 +36,9 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
             <Pressable 
                 style={{
                     width: '100%', 
-                    borderWidth: 2, 
+                    borderWidth: 0, 
                     borderRadius: 25, 
-                    padding: 5, 
+                    padding: 0, 
                     marginTop: 10, 
                     alignContent: 'center', 
                     alignItems: 'center', 
@@ -51,10 +50,9 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     setAddedTask(!AddedTask)
             }} 
             >
-                <MaterialCommunityIcons 
-                    name="plus-minus-variant" 
-                    size={24} 
-                    color="black" 
+                <Image 
+                    source={require('../assets/plus-minus-sign.png')} 
+                    style={{width: 40, height: 40}} 
                 />
             </Pressable>
         </View>
