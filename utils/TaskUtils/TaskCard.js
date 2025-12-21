@@ -1,7 +1,7 @@
 import { Text, Pressable, View } from 'react-native'
-import { styles } from '../Styles'
-import { ProgressRotation } from './ProgressRotation'
-import { CheckOrHalfCheck } from './CheckOrHalfCheck'
+import { styles } from '../../Styles'
+import { ProgressRotation } from '../ProgressRotation'
+import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
     return ( 

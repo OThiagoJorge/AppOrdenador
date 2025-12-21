@@ -6,6 +6,7 @@ import { Tasks } from './utils/TaskUtils/Tasks'
 import { GlobalContext } from './Context'
 import React, {useContext} from 'react'
 import { StatusBar } from 'expo-status-bar'
+import * as Progress from 'react-native-progress'
 
 export const Main = () => {
 
@@ -14,9 +15,14 @@ export const Main = () => {
   return (
       <>
         <StatusBar style={'auto'} />
-        <Pressable
-          style={{height: 30, width: '100%', backgroundColor: '#0a7e8c'}}
-        />
+          <Progress.Bar
+            style={{height: 30, width: '100%'}}
+            progress={0.3} 
+            width={null}
+            color='#0a7e8c'
+            height={30}
+            useNativeDriver={false}               
+          />
         <Tasks />
         <Pressable
           title="+"
