@@ -16,7 +16,7 @@ export const Main = () => {
       <>
         <StatusBar style={'auto'} />
           <Progress.Bar
-            style={{height: 30, width: '100%'}}
+            style={{height: 30, width: '100%', borderWidth: 0, borderRadius: 0}}
             progress={0.3} 
             width={null}
             color='#0a7e8c'

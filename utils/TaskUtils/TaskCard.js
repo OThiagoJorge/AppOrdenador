@@ -16,11 +16,17 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                 style={[
                     styles.task,
                     {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
+
                 ]}
-            >
+            >  
+                <Pressable style={{position: 'absolute', left: 0, width: '30', height: '100%',backgroundColor: 'gray', borderBlockColor: 'black', borderRightWidth: 2}}>
+
+                </Pressable>
                 <Text style={{
                     textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                    fontSize: 20
+                    fontSize: 20,
+                    marginLeft: 60,
+                    width: '70%'
                 }}>
                     - {task.text}{'\n'}{task.Description}
                 </Text>
