@@ -2,6 +2,7 @@ import { Text, Pressable, View } from 'react-native'
 import { styles } from '../../Styles'
 import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
+import * as Progress from 'react-native-progress'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
     return ( 
@@ -19,9 +20,22 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 
                 ]}
             >  
-                <Pressable style={{position: 'absolute', left: 0, width: '30', height: '100%',backgroundColor: 'gray', borderBlockColor: 'black', borderRightWidth: 2}}>
-
-                </Pressable>
+                <Progress.Bar
+                    style={{height: 30, width: '100%', borderBottomWidth: 2, borderWidth: 0, borderColor: 'black', borderRadius: 0, transform: [{ rotate: '-90deg' }], position: 'absolute', left: -173, top: 70}}
+                    progress={0.1} 
+                    width={null}
+                    color='blue'
+                    height={30}
+                    useNativeDriver={false}               
+                />
+                <Progress.Bar
+                    style={{height: 30, width: '100%', borderTopWidth: 2, borderWidth: 0, borderColor: 'black', borderRadius: 0, transform: [{ rotate: '90deg' }], position: 'absolute', left: -173, bottom: 70}}
+                    progress={0} 
+                    width={null}
+                    color='red'
+                    height={30}
+                    useNativeDriver={false}               
+                />
                 <Text style={{
                     textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
                     fontSize: 20,
