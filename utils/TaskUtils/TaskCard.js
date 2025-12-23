@@ -65,18 +65,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                     useNativeDriver={false}
                 />
                 <Progress.Bar
-                    style={{
-                        height: 30, 
-                        width: '100%', 
-                        borderTopWidth: 2, 
-                        borderWidth: 0, 
-                        borderColor: 'black', 
-                        borderRadius: 0, 
-                        transform: [{ rotate: '90deg' }], 
-                        position: 'absolute', 
-                        left: -173, 
-                        bottom: 70
-                    }}
+                    style={styles.BottomProgressBar}
                     progress={0} 
                     width={null}
                     color='red'

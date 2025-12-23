@@ -62,6 +62,7 @@ export const UpperBar = () => {
           <MenuOptions style={{padding: 15}}>
             <MenuOption onSelect={() => navigation.navigate('Calendar')} text='Calendário' />
             <MenuOption onSelect={() => navigation.navigate('Trash')} text='Lixeira' />
+            <MenuOption text='Exibir timer' />
           </MenuOptions>
         </Menu>
       </Pressable>

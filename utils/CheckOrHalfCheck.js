@@ -51,7 +51,7 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
             }} 
             >
                 <Image 
-                    source={require('../assets/plus-minus-sign.png')} 
+                    source={require('../assets/plus-minus-sign(1).png')} 
                     style={{width: 40, height: 40}} 
                 />
             </Pressable>

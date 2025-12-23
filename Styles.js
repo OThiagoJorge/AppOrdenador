@@ -1,4 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
+
+// Posteriormente modularizar esse emaranhado de estilos no modelo:
+// export const styles = StyleSheet.create({
+//   ...layout,
+//   ...task,
+//   ...modal,
+//   ...progress,
+// });
 
 export const styles = StyleSheet.create({
   container: {
@@ -81,11 +89,6 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
   buttonOpen: {
     backgroundColor: '#F194FF',
   },
@@ -112,5 +115,17 @@ export const styles = StyleSheet.create({
     position: 'absolute', 
     left: -173, 
     top: 70
+  },
+  BottomProgressBar: {
+    height: 30, 
+    width: '100%', 
+    borderTopWidth: 2, 
+    borderWidth: 0, 
+    borderColor: 'black', 
+    borderRadius: 0, 
+    transform: [{ rotate: '90deg' }], 
+    position: 'absolute', 
+    left: -173, 
+    bottom: 70
   }
 })
