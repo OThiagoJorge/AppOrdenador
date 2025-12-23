@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { UpperBar } from './UpperBar'
 import { MenuProvider } from 'react-native-popup-menu'
 import { TrashScreen } from './utils/TrashScreen'
+import { ProgressScreen } from './utils/ProgressScreen'
 
 export const HomeScreen = () => {
     return (
@@ -25,7 +26,8 @@ const RootStack = createNativeStackNavigator({
       },
     },
     Calendar: CalendarScreen,
-    Trash: TrashScreen
+    Trash: TrashScreen,
+    Progress: ProgressScreen
   }
 })
 
