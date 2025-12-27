@@ -1,4 +1,4 @@
-import { Text, Pressable, View } from 'react-native'
+import { Text, Pressable, View, Alert } from 'react-native'
 import Entypo from '@expo/vector-icons/Entypo'
 import {
   Menu,
@@ -21,6 +21,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
             key={i}
         >
             <Pressable
+                onPress={() =>Alert.alert('clicado')}
                 style={[{
                     backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white',
                     transition: '7s', 
@@ -33,12 +34,12 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                     backgroundColor: '#f0f0f0'
                 }]}
             >
-                <Text style={{
-                    textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                    fontSize: 20
-                }}>
-                    - {task.text}{'\n'}{task.description}
-                </Text>
+                    <Text style={{
+                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
+                        fontSize: 20
+                    }}>
+                        - {task.text}{'\n'}{task.description}
+                    </Text>
             </Pressable>
             <Menu>
                 <MenuTrigger>

@@ -4,45 +4,21 @@ import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
 import * as Progress from 'react-native-progress'
 import React, {useState} from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { AskToSeeProgressModal } from './AskToSeePogressModal'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 
     const [modalVisible, setModalVisible] = useState(false)
-    const navigation = useNavigation()
 
     return ( 
         <View 
             style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
             key={i}
         >
-            <Modal
-                style={{marginTop: 100}}
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Ver progresso?</Text>
-                        <Pressable
-                            onPress={() => navigation.navigate('Progress')}
-                        >
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Sim</Text>
-                        </Pressable>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>fechar</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
+            <AskToSeeProgressModal 
+                modalVisible={modalVisible} 
+                setModalVisible={setModalVisible} 
+            />
             {/* Utilizar possivelmente um useEffect e algum contador de tempo para desativar a exibição de ProgressRotation
             ao finalizar a rotação */}
             <ProgressRotation task={task} />
@@ -72,15 +48,23 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                     height={30}
                     useNativeDriver={false}               
                 />
-                
-                <Text style={{
-                    textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                    fontSize: 20,
-                    marginLeft: 60,
-                    width: '70%'
-                }}>
-                    - {task.text}{'\n'}{task.Description}
-                </Text>
+                <Pressable 
+                    onPress={() =>Alert.alert('clicado')}
+                    style={{
+                        marginLeft: 60,
+                        width: '70%'
+                    }}
+                >
+                    <Text 
+                        style={{
+                            textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
+                            fontSize: 20,
+                            width: '100%'
+                        }}
+                    >
+                        - {task.text}{'\n'}{task.Description}
+                    </Text>
+                </Pressable>
                 <CheckOrHalfCheck 
                     isChecked={isChecked} 
                     setChecked={setChecked} 
