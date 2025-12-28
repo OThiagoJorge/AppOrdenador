@@ -1,4 +1,4 @@
-import { Text, Pressable, View, Alert } from 'react-native'
+import { Text, Pressable, View, Alert, TextInput } from 'react-native'
 import Entypo from '@expo/vector-icons/Entypo'
 import {
   Menu,
@@ -6,8 +6,14 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu'
+import { styles } from '../../Styles'
+import React, { useState } from 'react'
 
 export const TaskInListMode = ({task, isChecked, i}) => {
+
+        const [text, onChangeText] = useState('Useless Text')
+        const [textInputIsVisible, setTextInputIsVisible] = useState(false)
+
     return (
         <View 
             style={{
@@ -20,7 +26,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
             }}
             key={i}
         >
-            <Pressable
+            {/* <Pressable
                 onPress={() =>Alert.alert('clicado')}
                 style={[{
                     backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white',
@@ -40,7 +46,65 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                     }}>
                         - {task.text}{'\n'}{task.description}
                     </Text>
-            </Pressable>
+            </Pressable> */}
+            <Pressable 
+                                onPress={() =>Alert.alert('clicado')}
+                                style={{
+                                    marginLeft: 60,
+                                    width: '70%'
+                                }}
+                                onLongPress={() => setTextInputIsVisible(!textInputIsVisible)}
+                            >
+                                {textInputIsVisible ? (
+                                    <TextInput
+                                        style={styles.input}
+                                        onChangeText={onChangeText}
+                                        value={task.text}
+                                        placeholder="Título"
+                                />
+                                )
+                                : (
+                                    <Text 
+                                    style={{
+                                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
+                                        fontSize: 20,
+                                        width: '100%'
+                                    }}
+                                >
+                                    - {task.text}
+                                </Text>
+                                )}
+                            </Pressable>
+                            <Pressable 
+                                onPress={() =>Alert.alert('clicado')}
+                                style={{
+                                    marginLeft: 60,
+                                    width: '70%'
+                                }}
+                                onLongPress={() => setTextInputIsVisible(!textInputIsVisible)}
+                            >
+                                {textInputIsVisible ? (
+                                    <TextInput
+                                        style={styles.input}
+                                        onChangeText={onChangeText}
+                                        value={task.description}
+                                        placeholder="Descrição"
+                                />
+                                )
+                                : 
+                                    <Text 
+                                    style={{
+                                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
+                                        fontSize: 20,
+                                        width: '100%'
+                                    }}
+                                >
+                                    {task.description}
+                                </Text>
+                                }
+                                
+                                
+                            </Pressable>
             <Menu>
                 <MenuTrigger>
                     <Entypo name="dots-three-vertical" size={24} color="black" />

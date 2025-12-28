@@ -127,5 +127,11 @@ export const styles = StyleSheet.create({
     position: 'absolute', 
     left: -173, 
     bottom: 70
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   }
 })
