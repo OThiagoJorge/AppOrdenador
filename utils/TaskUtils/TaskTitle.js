@@ -7,7 +7,8 @@ export const TaskTitle = ({task, taskTitleInputIsVisible, setTaskTitleInputIsVis
                     onPress={() =>Alert.alert(task.description)}
                     style={{
                         marginLeft: 60,
-                        width: '70%'
+                        width: '70%',
+                        backgroundColor: 'yellow'
                     }}
                     onLongPress={() => setTaskTitleInputIsVisible(!taskTitleInputIsVisible)}
                 >

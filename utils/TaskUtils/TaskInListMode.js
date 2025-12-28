@@ -6,13 +6,15 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu'
-import { styles } from '../../Styles'
 import React, { useState } from 'react'
+import { TaskTitle } from './TaskTitle'
+import { TaskDescription } from './TaskDescription'
 
 export const TaskInListMode = ({task, isChecked, i}) => {
 
-        const [text, onChangeText] = useState('Useless Text')
-        const [textInputIsVisible, setTextInputIsVisible] = useState(false)
+    const [text, onChangeText] = useState('Useless Text')
+    const [taskTitleInputIsVisible, setTaskTitleInputIsVisible] = useState(false)
+    const [descriptionInputIsVisible, setDescriptionInputIsVisible] = useState(false)
 
     return (
         <View 
@@ -47,64 +49,24 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                         - {task.text}{'\n'}{task.description}
                     </Text>
             </Pressable> */}
-            <Pressable 
-                                onPress={() =>Alert.alert('clicado')}
-                                style={{
-                                    marginLeft: 60,
-                                    width: '70%'
-                                }}
-                                onLongPress={() => setTextInputIsVisible(!textInputIsVisible)}
-                            >
-                                {textInputIsVisible ? (
-                                    <TextInput
-                                        style={styles.input}
-                                        onChangeText={onChangeText}
-                                        value={task.text}
-                                        placeholder="Título"
-                                />
-                                )
-                                : (
-                                    <Text 
-                                    style={{
-                                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                                        fontSize: 20,
-                                        width: '100%'
-                                    }}
-                                >
-                                    - {task.text}
-                                </Text>
-                                )}
-                            </Pressable>
-                            <Pressable 
-                                onPress={() =>Alert.alert('clicado')}
-                                style={{
-                                    marginLeft: 60,
-                                    width: '70%'
-                                }}
-                                onLongPress={() => setTextInputIsVisible(!textInputIsVisible)}
-                            >
-                                {textInputIsVisible ? (
-                                    <TextInput
-                                        style={styles.input}
-                                        onChangeText={onChangeText}
-                                        value={task.description}
-                                        placeholder="Descrição"
-                                />
-                                )
-                                : 
-                                    <Text 
-                                    style={{
-                                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                                        fontSize: 20,
-                                        width: '100%'
-                                    }}
-                                >
-                                    {task.description}
-                                </Text>
-                                }
-                                
-                                
-                            </Pressable>
+            <View
+                style={{flexDirection: 'column', width: '80%', paddingVertical: 10}}
+            >
+                <TaskTitle 
+                    task={task} 
+                    taskTitleInputIsVisible={taskTitleInputIsVisible} 
+                    setTaskTitleInputIsVisible={setTaskTitleInputIsVisible} 
+                    onChangeText={onChangeText} 
+                    isChecked={isChecked} 
+                />
+                <TaskDescription 
+                    task={task} 
+                    descriptionInputIsVisible={descriptionInputIsVisible} 
+                    setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
+                    onChangeText={onChangeText}
+                    isChecked={isChecked}
+                />
+            </View>
             <Menu>
                 <MenuTrigger>
                     <Entypo name="dots-three-vertical" size={24} color="black" />

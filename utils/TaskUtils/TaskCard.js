@@ -1,4 +1,4 @@
-import { Text, Pressable, View, TextInput, Alert } from 'react-native'
+import { Text, Pressable, View } from 'react-native'
 import { styles } from '../../Styles'
 import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
@@ -6,39 +6,7 @@ import * as Progress from 'react-native-progress'
 import React, {useState} from 'react'
 import { AskToSeeProgressModal } from './AskToSeePogressModal'
 import { TaskTitle } from './TaskTitle'
-
-const TaskDescription = ({task, descriptionInputIsVisible, setDescriptionInputIsVisible, onChangeText, isChecked}) => {
-    return (
-                        <Pressable 
-                    onPress={() =>Alert.alert('clicado')}
-                    style={{
-                        marginLeft: 60,
-                        width: '70%'
-                    }}
-                    onLongPress={() => setDescriptionInputIsVisible(!descriptionInputIsVisible)}
-                >
-                    {descriptionInputIsVisible ? (
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={onChangeText}
-                            value={task.description}
-                            placeholder="Descrição"
-                        />
-                    )
-                    : 
-                        <Text 
-                            style={{
-                                textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                                fontSize: 20,
-                                width: '100%'
-                            }}
-                        >
-                            {task.description}
-                        </Text>
-                    }
-                </Pressable>
-    )
-}
+import { TaskDescription } from './TaskDescription'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 
@@ -85,20 +53,24 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                     height={30}
                     useNativeDriver={false}               
                 />
-                <TaskTitle 
-                    task={task} 
-                    taskTitleInputIsVisible={taskTitleInputIsVisible} 
-                    setTaskTitleInputIsVisible={setTaskTitleInputIsVisible} 
-                    onChangeText={onChangeText} 
-                    isChecked={isChecked} 
-                />
-                <TaskDescription 
-                    task={task} 
-                    descriptionInputIsVisible={descriptionInputIsVisible} 
-                    setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
-                    onChangeText={onChangeText}
-                    isChecked={isChecked}
-                />
+                <View
+                    style={{flexDirection: 'column', width: '80%', paddingVertical: 10}}
+                >
+                    <TaskTitle 
+                        task={task} 
+                        taskTitleInputIsVisible={taskTitleInputIsVisible} 
+                        setTaskTitleInputIsVisible={setTaskTitleInputIsVisible} 
+                        onChangeText={onChangeText} 
+                        isChecked={isChecked} 
+                    />
+                    <TaskDescription 
+                        task={task} 
+                        descriptionInputIsVisible={descriptionInputIsVisible} 
+                        setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
+                        onChangeText={onChangeText}
+                        isChecked={isChecked}
+                    />
+                </View>
                 <CheckOrHalfCheck 
                     isChecked={isChecked} 
                     setChecked={setChecked} 

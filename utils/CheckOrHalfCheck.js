@@ -48,7 +48,13 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     let id = Math.floor(Math.random() * 1000)
                     AsyncStorage.setItem('tarefas', JSON.stringify({text: task.text + ' parte 2', description: task.description, id: id}))
                     setAddedTask(!AddedTask)
-            }} 
+                    let newChecked = [...isChecked]
+                    newChecked[task.id] = !newChecked[task.id]
+                    setChecked(newChecked)
+                    setTimeout(() => {
+                        goToAnotherPage(i + 1)
+                    }, 7000)
+                }} 
             >
                 <Image 
                     source={require('../assets/plus-minus-sign(1).png')} 
