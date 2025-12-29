@@ -1,4 +1,4 @@
-import { Text, Pressable, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { styles } from '../../Styles'
 import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
@@ -34,7 +34,16 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                 ]}
             >  
                 <Pressable 
-                    style={{height: '100%', width: 30, position: 'absolute', left: 0, top: 0, zIndex: 1}} 
+                    style={{
+                        height: '100%',
+                         width: 35, 
+                         position: 'absolute', 
+                         left: 0, 
+                         top: 0, 
+                         zIndex: 1, 
+                         borderRightWidth: 5, 
+                         borderColor: '#d1d5db'
+                    }} 
                     onPress={() => setModalVisible(true)}
                 />
                 <Progress.Bar
