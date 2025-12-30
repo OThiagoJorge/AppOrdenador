@@ -8,7 +8,7 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
             style={{
                 marginLeft: 60,
                 width: '70%',
-                backgroundColor: 'gray'
+                backgroundColor: '#454545ff'
             }}
             onLongPress={() => setDescriptionInputIsVisible(!descriptionInputIsVisible)}
         >
@@ -25,7 +25,8 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
                     style={{
                         textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
                         fontSize: 20,
-                        width: '100%'
+                        width: '100%',
+                        color: '#ffffff'
                     }}
                 >
                     {task.description}

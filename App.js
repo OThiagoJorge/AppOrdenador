@@ -26,8 +26,20 @@ const RootStack = createNativeStackNavigator({
       },
     },
     Calendar: CalendarScreen,
-    Trash: TrashScreen,
-    Progress: ProgressScreen
+    Trash: {
+      screen: TrashScreen,
+      options: {
+        headerTitle: (props) => <UpperBar {...props} />,
+        headerBackVisible: true
+      },
+    },
+    Progress: {
+      screen: ProgressScreen,
+      options: {
+        headerTitle: (props) => <UpperBar {...props} />,
+        headerBackVisible: true
+      },
+    }
   }
 })
 

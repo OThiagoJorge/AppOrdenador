@@ -1,14 +1,50 @@
 import { StyleSheet } from 'react-native'
 
 // Posteriormente modularizar esse emaranhado de estilos no modelo:
-// export const styles = StyleSheet.create({
-//   ...layout,
-//   ...task,
-//   ...modal,
-//   ...progress,
-// });
 
-export const styles = StyleSheet.create({
+export const styles0 = StyleSheet.create({
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  UpperProgressBar: {
+    height: 30, 
+    width: '100%', 
+    borderBottomWidth: 2, 
+    borderWidth: 0, 
+    borderColor: 'black', 
+    borderRadius: 0, 
+    transform: [{ rotate: '-90deg' }], 
+    position: 'absolute', 
+    left: -173, 
+    top: 70
+  },
+  BottomProgressBar: {
+    height: 30, 
+    width: '100%', 
+    borderTopWidth: 2, 
+    borderWidth: 0, 
+    borderColor: 'black', 
+    borderRadius: 0, 
+    transform: [{ rotate: '90deg' }], 
+    position: 'absolute', 
+    left: -173, 
+    bottom: 70
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  }
+})
+
+const styles1 = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -94,44 +130,10 @@ export const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  UpperProgressBar: {
-    height: 30, 
-    width: '100%', 
-    borderBottomWidth: 2, 
-    borderWidth: 0, 
-    borderColor: 'black', 
-    borderRadius: 0, 
-    transform: [{ rotate: '-90deg' }], 
-    position: 'absolute', 
-    left: -173, 
-    top: 70
-  },
-  BottomProgressBar: {
-    height: 30, 
-    width: '100%', 
-    borderTopWidth: 2, 
-    borderWidth: 0, 
-    borderColor: 'black', 
-    borderRadius: 0, 
-    transform: [{ rotate: '90deg' }], 
-    position: 'absolute', 
-    left: -173, 
-    bottom: 70
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
   }
+})
+
+export const styles = StyleSheet.create({
+  ...styles0,
+  ...styles1
 })

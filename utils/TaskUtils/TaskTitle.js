@@ -6,8 +6,7 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
         <View 
             style={{
                 marginLeft: inListMode ? 20 : 60,
-                width: inListMode ? '100%' : '70%',
-                backgroundColor: inListMode ? 'transparent' : 'yellow'
+                width: inListMode ? '100%' : '70%'
             }}
             onLongPress={() => setTaskTitleInputIsVisible(!taskTitleInputIsVisible)}
         >
@@ -24,7 +23,7 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                     style={{
                         textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
                         fontSize: 20,
-                        width: '100%'
+                        backgroundColor: inListMode ? 'transparent' : 'yellow'
                     }}
                 >
                     - {task.text}
