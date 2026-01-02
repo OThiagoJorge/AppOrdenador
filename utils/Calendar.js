@@ -15,14 +15,14 @@ export const CalendarScreen = () => {
     const [Tasks, setTasks] = useState([])
 
     useEffect(() => {
-            const loadData = async () => {
-              const saved = await AsyncStorage.getItem("tarefas")
-              const value = JSON.parse(saved)
-              if (value) {setTasks(task => [...task, value])}
-            }
-            loadData()
-            console.log(Tasks)
-        }, [AddedTask])
+        const loadData = async () => {
+            const saved = await AsyncStorage.getItem("tarefas")
+            const value = JSON.parse(saved)
+            if (value) {setTasks(task => [...task, value])}
+        }
+        loadData()
+        console.log(Tasks)
+    }, [AddedTask])
 
     return (
         <>

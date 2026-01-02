@@ -17,7 +17,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 export const UpperBar = () => {
   const navigation = useNavigation()
 
-  const {isCard, setIsCard} = useContext(GlobalContext)
+  const {isCard, setIsCard, showTimer, setShowTimer} = useContext(GlobalContext)
 
   const [date, setDate] = useState(new Date())
 
@@ -62,7 +62,11 @@ export const UpperBar = () => {
           <MenuOptions style={{padding: 15}}>
             <MenuOption onSelect={() => navigation.navigate('Calendar')} text='Calendário' />
             <MenuOption onSelect={() => navigation.navigate('Trash')} text='Lixeira' />
-            <MenuOption text='Exibir timer' />
+            {!showTimer ? (
+              <MenuOption onSelect={() => setShowTimer(!showTimer)}text='Exibir timer' />
+            ) : (
+              <MenuOption onSelect={() => setShowTimer(!showTimer)}text='Ocultar timer' />
+            )}
           </MenuOptions>
         </Menu>
       </Pressable>

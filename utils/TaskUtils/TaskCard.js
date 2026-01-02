@@ -1,19 +1,33 @@
-import { Pressable, View } from 'react-native'
+import { Pressable, View, Text } from 'react-native'
 import { styles } from '../../Styles'
 import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
 import * as Progress from 'react-native-progress'
-import React, {useState} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { AskToSeeProgressModal } from './AskToSeePogressModal'
-import { TaskTitle } from './TaskTitle'
-import { TaskDescription } from './TaskDescription'
+import { GlobalContext } from '../../Context'
+import { TaskTitleAndDescription } from './TaskTitleAndDescription'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 
     const [modalVisible, setModalVisible] = useState(false)
-    const [text, onChangeText] = useState('Useless Text')
-    const [taskTitleInputIsVisible, setTaskTitleInputIsVisible] = useState(false)
-    const [descriptionInputIsVisible, setDescriptionInputIsVisible] = useState(false)
+
+    const {showTimer, setShowTimer} = useContext(GlobalContext)
+
+    const [timerCount, setTimer] = useState(60)
+    
+    useEffect(() => {
+        let interval = setInterval(() => {
+            setTimer(lastTimerCount => {
+                if (lastTimerCount == 0) {
+                } else {
+                    lastTimerCount <= 1 && clearInterval(interval)
+                    return lastTimerCount - 1
+                }
+            })
+        }, 1000)
+        return () => clearInterval(interval)
+    }, [showTimer])
 
     return ( 
         <View 
@@ -27,6 +41,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
             {/* Utilizar possivelmente um useEffect e algum contador de tempo para desativar a exibição de ProgressRotation
             ao finalizar a rotação */}
             <ProgressRotation task={task} />
+            {showTimer && (<Text>{timerCount}</Text>)}            
             <Pressable
                 style={[
                     styles.task,
@@ -62,24 +77,10 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                     height={30}
                     useNativeDriver={false}               
                 />
-                <View
-                    style={{flexDirection: 'column', width: '80%', paddingVertical: 10}}
-                >
-                    <TaskTitle 
-                        task={task} 
-                        taskTitleInputIsVisible={taskTitleInputIsVisible} 
-                        setTaskTitleInputIsVisible={setTaskTitleInputIsVisible} 
-                        onChangeText={onChangeText} 
-                        isChecked={isChecked} 
-                    />
-                    <TaskDescription 
-                        task={task} 
-                        descriptionInputIsVisible={descriptionInputIsVisible} 
-                        setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
-                        onChangeText={onChangeText}
-                        isChecked={isChecked}
-                    />
-                </View>
+                <TaskTitleAndDescription 
+                    task={task} 
+                    isChecked={isChecked}
+                />
                 <CheckOrHalfCheck 
                     isChecked={isChecked} 
                     setChecked={setChecked} 
