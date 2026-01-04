@@ -36,12 +36,12 @@ export const styles0 = StyleSheet.create({
     left: -173, 
     bottom: 70
   },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  }
+  // input: {
+  //   height: 40,
+  //   margin: 12,
+  //   borderWidth: 1,
+  //   padding: 10,
+  // }
 })
 
 const styles1 = StyleSheet.create({

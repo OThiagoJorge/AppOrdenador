@@ -1,9 +1,8 @@
-import { Text, View, TextInput } from 'react-native'
-import { styles } from '../../Styles'
+import { Text, TextInput, Pressable } from 'react-native'
 
 export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVisible, onChangeText, isChecked, inListMode }) => {
     return (
-        <View 
+        <Pressable 
             style={{
                 marginLeft: inListMode ? 20 : 60,
                 width: inListMode ? '100%' : '70%'
@@ -12,7 +11,10 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
         >
             {taskTitleInputIsVisible ? (
                 <TextInput
-                    style={styles.input}
+                    style={{
+                        fontSize: 20,
+                        backgroundColor: inListMode ? 'transparent' : 'yellow'
+                    }}
                     onChangeText={onChangeText}
                     value={task.text}
                     placeholder="Título"
@@ -29,6 +31,6 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                     - {task.text}
                 </Text>
             )}
-        </View>
+        </Pressable>
     )
 }

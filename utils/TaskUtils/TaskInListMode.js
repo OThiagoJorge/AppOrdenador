@@ -1,4 +1,4 @@
-import { Text, Pressable, View, Alert, Modal } from 'react-native'
+import { Text, Pressable, View, Modal } from 'react-native'
 import Entypo from '@expo/vector-icons/Entypo'
 import {
   Menu,

@@ -42,9 +42,17 @@ export const UpperBar = () => {
         }}
       >
         {isCard ? 
-          <FontAwesome name="list" size={24} color="black" /> 
+          <FontAwesome 
+            name="list" 
+            size={24} 
+            color="black" 
+          /> 
         : 
-          <MaterialCommunityIcons name="mirror-rectangle" size={24} color="black" />
+          <MaterialCommunityIcons 
+            name="mirror-rectangle" 
+            size={24} 
+            color="black" 
+          />
         }
       </Pressable>
       <Pressable
@@ -57,15 +65,31 @@ export const UpperBar = () => {
       >
         <Menu>
           <MenuTrigger>
-            <Feather name="more-horizontal" size={24} color="black" />
+            <Feather 
+              name="more-horizontal" 
+              size={24} 
+              color="black" 
+            />
           </MenuTrigger>
           <MenuOptions style={{padding: 15}}>
-            <MenuOption onSelect={() => navigation.navigate('Calendar')} text='Calendário' />
-            <MenuOption onSelect={() => navigation.navigate('Trash')} text='Lixeira' />
+            <MenuOption 
+              onSelect={() => navigation.navigate('Calendar')} 
+              text='Calendário' 
+            />
+            <MenuOption 
+              onSelect={() => navigation.navigate('Trash')} 
+              text='Lixeira' 
+            />
             {!showTimer ? (
-              <MenuOption onSelect={() => setShowTimer(!showTimer)}text='Exibir timer' />
+              <MenuOption 
+                onSelect={() => setShowTimer(!showTimer)}
+                text='Exibir timer' 
+              />
             ) : (
-              <MenuOption onSelect={() => setShowTimer(!showTimer)}text='Ocultar timer' />
+              <MenuOption
+                onSelect={() => setShowTimer(!showTimer)}
+                text='Ocultar timer' 
+              />
             )}
           </MenuOptions>
         </Menu>

@@ -1,4 +1,4 @@
-import { Pressable, View, Text } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { styles } from '../../Styles'
 import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
@@ -7,6 +7,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import { AskToSeeProgressModal } from './AskToSeePogressModal'
 import { GlobalContext } from '../../Context'
 import { TaskTitleAndDescription } from './TaskTitleAndDescription'
+import { Timer } from './Timer'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 
@@ -41,7 +42,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
             {/* Utilizar possivelmente um useEffect e algum contador de tempo para desativar a exibição de ProgressRotation
             ao finalizar a rotação */}
             <ProgressRotation task={task} />
-            {showTimer && (<Text>{timerCount}</Text>)}            
+            {showTimer && (<Timer />)}            
             <Pressable
                 style={[
                     styles.task,
