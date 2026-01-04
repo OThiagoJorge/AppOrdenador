@@ -14,10 +14,53 @@ import Feather from '@expo/vector-icons/Feather'
 import { ArrowLeft, ArrowRight } from './UpperArrows'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
+const MoreOptionUpperBar = () => {
+  const navigation = useNavigation()
+
+  const {showTimer, setShowTimer} = useContext(GlobalContext)
+
+  return (
+    <Pressable 
+        style={{position: 'absolute', right: 40}}
+      >
+        <Menu>
+          <MenuTrigger>
+            <Feather 
+              name="more-horizontal" 
+              size={24} 
+              color="black" 
+            />
+          </MenuTrigger>
+          <MenuOptions style={{padding: 15}}>
+            <MenuOption 
+              onSelect={() => navigation.navigate('Calendar')} 
+              text='Calendário' 
+            />
+            <MenuOption 
+              onSelect={() => navigation.navigate('Trash')} 
+              text='Lixeira' 
+            />
+            {!showTimer ? (
+              <MenuOption 
+                onSelect={() => setShowTimer(!showTimer)}
+                text='Exibir timer' 
+              />
+            ) : (
+              <MenuOption
+                onSelect={() => setShowTimer(!showTimer)}
+                text='Ocultar timer' 
+              />
+            )}
+          </MenuOptions>
+        </Menu>
+      </Pressable>
+  )
+}
+
 export const UpperBar = () => {
   const navigation = useNavigation()
 
-  const {isCard, setIsCard, showTimer, setShowTimer} = useContext(GlobalContext)
+  const {isCard, setIsCard} = useContext(GlobalContext)
 
   const [date, setDate] = useState(new Date())
 
@@ -60,40 +103,7 @@ export const UpperBar = () => {
       >
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
       </Pressable>
-      <Pressable 
-        style={{position: 'absolute', right: 40}}
-      >
-        <Menu>
-          <MenuTrigger>
-            <Feather 
-              name="more-horizontal" 
-              size={24} 
-              color="black" 
-            />
-          </MenuTrigger>
-          <MenuOptions style={{padding: 15}}>
-            <MenuOption 
-              onSelect={() => navigation.navigate('Calendar')} 
-              text='Calendário' 
-            />
-            <MenuOption 
-              onSelect={() => navigation.navigate('Trash')} 
-              text='Lixeira' 
-            />
-            {!showTimer ? (
-              <MenuOption 
-                onSelect={() => setShowTimer(!showTimer)}
-                text='Exibir timer' 
-              />
-            ) : (
-              <MenuOption
-                onSelect={() => setShowTimer(!showTimer)}
-                text='Ocultar timer' 
-              />
-            )}
-          </MenuOptions>
-        </Menu>
-      </Pressable>
+      <MoreOptionUpperBar />
       <ArrowRight
         date={date} 
         setDate={setDate}

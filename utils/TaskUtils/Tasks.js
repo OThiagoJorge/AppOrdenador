@@ -5,7 +5,7 @@ import { GlobalContext } from '../../Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  PagerView  from 'react-native-pager-view'
 import { TaskCard } from './TaskCard'
-import { TaskInListMode } from './TaskInListMode'
+import { TaskInListMode } from './components/TaskInListMode'
 
 export const Tasks = () => {
     const refPagerView = useRef(null)

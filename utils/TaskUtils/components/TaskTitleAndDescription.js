@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import { TaskTitle } from './TaskTitle'
-import { TaskDescription } from './TaskDescription'
+import { TaskDescription } from '../TaskDescription'
 import React, {useState} from 'react'
 
 export const TaskTitleAndDescription = ({task, isChecked}) => {

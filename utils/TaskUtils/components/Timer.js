@@ -32,14 +32,25 @@ export const Timer = () => {
   }
 
   return (
-    <View style={{ position: "absolute", top: 10, right: 125, zIndex: 1, textAlign: "center", fontFamily: "Arial", fontSize: 20 }}>
-      <Text style={{fontSize: 45}}>{formatTime(time)}</Text>
+    <View style={{ 
+      position: "absolute", 
+      top: 10, 
+      right: 125, 
+      zIndex: 1, 
+      textAlign: "center", 
+      fontFamily: "Arial", 
+      fontSize: 20, 
+      backgroundColor: "#0a7e8c", 
+      padding: 10, 
+      borderRadius: 35
+    }}>
+      <Text style={{fontSize: 45, color: "white"}}>{formatTime(time)}</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
         <Pressable onPress={() => setPlaying(true)}>
-          <Text style={{ color: "green" }}>Iniciar</Text>
+          <Text style={{ color: "white" }}>Iniciar</Text>
         </Pressable>
         <Pressable onPress={() => setPlaying(false)}>
-          <Text style={{ color: "red" }}>Pausar</Text>
+          <Text style={{ color: "white" }}>Pausar</Text>
         </Pressable>
         <Pressable
             onPress={() => {
@@ -47,7 +58,7 @@ export const Timer = () => {
             setTime(InitialTime)
             }}
         >
-            <Text>Resetar</Text>
+            <Text style={{ color: "white" }}>Resetar</Text>
         </Pressable>
       </View>
     </View>

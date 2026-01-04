@@ -4,10 +4,10 @@ import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
 import * as Progress from 'react-native-progress'
 import React, {useState, useEffect, useContext} from 'react'
-import { AskToSeeProgressModal } from './AskToSeePogressModal'
+import { AskToSeeProgressModal } from './components/AskToSeePogressModal'
 import { GlobalContext } from '../../Context'
-import { TaskTitleAndDescription } from './TaskTitleAndDescription'
-import { Timer } from './Timer'
+import { TaskTitleAndDescription } from './components/TaskTitleAndDescription'
+import { Timer } from './components/Timer'
 
 export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 

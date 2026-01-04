@@ -8,8 +8,8 @@ import {
 } from 'react-native-popup-menu'
 import React, { useState } from 'react'
 import { TaskTitle } from './TaskTitle'
-import { TaskDescription } from './TaskDescription'
-import { styles } from '../../Styles'
+import { TaskDescription } from '../TaskDescription'
+import { styles } from '../../../Styles'
 
 export const TaskInListMode = ({task, isChecked, i}) => {
 

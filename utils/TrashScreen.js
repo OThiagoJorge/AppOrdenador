@@ -1,4 +1,4 @@
-import { TaskInListMode } from './TaskUtils/TaskInListMode'
+import { TaskInListMode } from './TaskUtils/components/TaskInListMode'
 import { ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { styles } from '../Styles'
