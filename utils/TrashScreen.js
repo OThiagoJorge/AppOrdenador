@@ -2,7 +2,7 @@ import { TaskInListMode } from './TaskUtils/components/TaskInListMode'
 import { ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { styles } from '../Styles'
-import { GlobalContext } from '../Context'
+import { GlobalContext } from '../resources/Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const TrashScreen = () => {

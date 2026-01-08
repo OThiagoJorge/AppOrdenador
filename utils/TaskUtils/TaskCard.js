@@ -5,7 +5,7 @@ import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
 import * as Progress from 'react-native-progress'
 import React, {useState, useEffect, useContext} from 'react'
 import { AskToSeeProgressModal } from './components/AskToSeePogressModal'
-import { GlobalContext } from '../../Context'
+import { GlobalContext } from '../../resources/Context'
 import { TaskTitleAndDescription } from './components/TaskTitleAndDescription'
 import { Timer } from './components/Timer'
 

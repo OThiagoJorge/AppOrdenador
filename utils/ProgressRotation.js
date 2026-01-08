@@ -1,5 +1,5 @@
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
-import { GlobalContext } from '../Context'
+import { GlobalContext } from '../resources/Context'
 import { Pressable } from 'react-native'
 import React, {useContext} from 'react'
 

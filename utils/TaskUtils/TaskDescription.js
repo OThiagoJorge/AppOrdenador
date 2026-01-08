@@ -12,26 +12,14 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
             }}
             onLongPress={() => setDescriptionInputIsVisible(!descriptionInputIsVisible)}
         >
-            {descriptionInputIsVisible ? (
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={task.description}
-                    placeholder="Descrição"
-                />
-            )
-            : 
-                <Text 
-                    style={{
-                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                        fontSize: 20,
-                        width: '100%',
-                        color: '#ffffff'
-                    }}
-                >
-                    {task.description}
-                </Text>
-            }
+            <TextInput
+                style={styles.input}
+                onChangeText={onChangeText}
+                value={task.description}
+                placeholder="Descrição"
+                editable={descriptionInputIsVisible}
+                multiline={true}
+            />
         </Pressable>
     )
 }

@@ -8,29 +8,18 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                 width: inListMode ? '100%' : '70%'
             }}
             onLongPress={() => setTaskTitleInputIsVisible(!taskTitleInputIsVisible)}
-        >
-            {taskTitleInputIsVisible ? (
-                <TextInput
-                    style={{
-                        fontSize: 20,
-                        backgroundColor: inListMode ? 'transparent' : 'yellow'
-                    }}
-                    onChangeText={onChangeText}
-                    value={task.text}
-                    placeholder="Título"
-                />
-            )
-            : (
-                <Text 
-                    style={{
-                        textDecorationLine: isChecked[task.id] ? 'line-through' : 'none', 
-                        fontSize: 20,
-                        backgroundColor: inListMode ? 'transparent' : 'yellow'
-                    }}
-                >
-                    - {task.text}
-                </Text>
-            )}
+        >            
+            <TextInput
+                style={{
+                    fontSize: 20,
+                    backgroundColor: inListMode ? 'transparent' : 'yellow'
+                }}
+                onChangeText={onChangeText}
+                value={task.title}
+                placeholder={"Título"}
+                editable={taskTitleInputIsVisible}
+                multiline={true}
+            />
         </Pressable>
     )
 }

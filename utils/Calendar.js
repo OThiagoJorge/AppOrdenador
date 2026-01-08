@@ -2,7 +2,7 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars'
 import { useNavigation } from '@react-navigation/native'
 import { Button } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../Context'
+import { GlobalContext } from '../resources/Context'
 
 export const CalendarScreen = () => {
     // Todas as datas devem estar selecionadas por padrão, sendo possível realizar algumas

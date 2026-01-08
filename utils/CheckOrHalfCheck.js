@@ -1,7 +1,7 @@
 import { Pressable, View, Image } from 'react-native'
 import React, { useContext } from 'react'
 import { styles } from '../Styles'
-import { GlobalContext } from '../Context'
+import { GlobalContext } from '../resources/Context'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import BouncyCheckbox from "react-native-bouncy-checkbox"
 

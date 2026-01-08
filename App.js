@@ -1,13 +1,14 @@
 import { Main } from './Main'
-import { ContextProvider } from './Context'
+import { ContextProvider } from './resources/Context'
 import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CalendarScreen } from './utils/Calendar'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { UpperBar } from './UpperBar'
+import { UpperBar } from './resources/UpperBar'
 import { MenuProvider } from 'react-native-popup-menu'
 import { TrashScreen } from './utils/TrashScreen'
 import { ProgressScreen } from './utils/ProgressScreen'
+import { SQLiteProvider } from 'expo-sqlite'
 
 export const HomeScreen = () => {
     return (
@@ -47,12 +48,16 @@ const Navigation = createStaticNavigation(RootStack)
 
 export default function App() {
   return (
-    <ContextProvider>
+    <SQLiteProvider 
+      databaseName="myApp.db"
+    >
+      <ContextProvider>
       <MenuProvider>
         <SafeAreaView style={{flex: 1, backgroundColor: '#f3f4f6', borderWidth: 0}}>
           <Navigation />
         </SafeAreaView>
       </MenuProvider>
     </ContextProvider>
+    </SQLiteProvider>
   )
 }
