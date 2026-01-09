@@ -32,18 +32,20 @@ export const Timer = () => {
   }
 
   return (
-    <View style={{ 
-      position: "absolute", 
-      top: 10, 
-      right: 125, 
-      zIndex: 1, 
-      textAlign: "center", 
-      fontFamily: "Arial", 
-      fontSize: 20, 
-      backgroundColor: "#0a7e8c", 
-      padding: 10, 
-      borderRadius: 35
-    }}>
+    <View 
+      style={{ 
+        position: "absolute", 
+        top: 10, 
+        right: 125, 
+        zIndex: 1, 
+        textAlign: "center", 
+        fontFamily: "Arial", 
+        fontSize: 20, 
+        backgroundColor: "#0a7e8c", 
+        padding: 10, 
+        borderRadius: 35
+      }}
+    >
       <Text style={{fontSize: 45, color: "white"}}>{formatTime(time)}</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
         <Pressable onPress={() => setPlaying(true)}>

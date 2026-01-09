@@ -1,6 +1,6 @@
-import { Text, TextInput, Pressable } from 'react-native'
+import { TextInput, Pressable } from 'react-native'
 
-export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVisible, onChangeText, isChecked, inListMode }) => {
+export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVisible, onChangeText, inListMode }) => {
     return (
         <Pressable 
             style={{
@@ -15,7 +15,7 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                     backgroundColor: inListMode ? 'transparent' : 'yellow'
                 }}
                 onChangeText={onChangeText}
-                value={task.title}
+                value={task.text}
                 placeholder={"Título"}
                 editable={taskTitleInputIsVisible}
                 multiline={true}
