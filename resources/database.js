@@ -1,62 +1,56 @@
-import * as SQLite from 'expo-sqlite';
+import * as SQLite from 'expo-sqlite'
 
-// Define the name of your database file
-const DB_NAME = 'myApp.db';
+// Provavelmente a forma como o banco de dados está sendo criado e acessado está errada
+// É necessário utilizar o SQLiteProvider para fornecer o contexto do banco de dados
+// e então utilizar o hook useSQLiteContext para acessar o banco de dados dentro das funções
 
-let db = null;
+// const DB_NAME = 'example.db'
 
-// Function to get a single, persistent database connection
-export async function getDB() {
-  if (!db) {
-    db = await SQLite.openDatabaseAsync(DB_NAME);
-  }
-  return db;
-}
+// const db = await SQLite.openDatabaseAsync(DB_NAME)
 
-export async function initializeDatabase() {
-  const db = await getDB();
+let db = null
+
+export async function createTable() {
+  const db = await SQLite.useSQLiteContext()
+
   await db.execAsync(`
-    PRAGMA journal_mode = 'wal';
-    CREATE TABLE IF NOT EXISTS users (
+    CREATE TABLE IF NOT EXISTS tasks (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL UNIQUE,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-    CREATE TABLE IF NOT EXISTS expenses (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user_id INTEGER NOT NULL,
       title TEXT NOT NULL,
-      amount REAL NOT NULL,
-      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-    );
-  `);
-  console.log('Database initialized and tables created');
+      description TEXT,
+      everyDay BOOLEAN NOT NULL,
+      todaysDate DATE
+    )
+  `)
+
+  console.log('Tabela criada com sucesso')
 }
 
-export async function firstRow() {
-    const db = await getDB()
-    const firstRow = await db.getFirstAsync('SELECT * FROM users')
-    console.log(firstRow.id, firstRow.value, firstRow.intValue);
-}
-
-export async function insertUser(name, email) {
-  const db = await getDB();
+export async function insertTask(title, description, everyDay, todaysDate) {
+  const db = await SQLite.useSQLiteContext()
 
   const result = await db.runAsync(
-    'INSERT INTO users (name, email) VALUES (?, ?)',
-    [name, email]
-  );
+    'INSERT INTO tasks (title, description, everyDay, todaysDate) VALUES (?, ?, ?, ?)',
+    [title, description, everyDay, todaysDate]
+  )
 
-  return result.lastInsertRowId;
+  console.log('Tarefa inserida com ID:', result.lastInsertRowId)
 }
 
-export async function getUsers() {
-  const db = await getDB();
+export async function listTasks() {
+  const db = await SQLite.useSQLiteContext()
 
-  const users = await db.getAllAsync(
-    'SELECT * FROM users ORDER BY created_at DESC'
-  );
+  const tasks = await db.getAllAsync(
+    'SELECT * FROM tasks'
+  )
 
-  return users;
+  console.log('Tarefas cadastradas:')
+  console.log(tasks)
 }
+
+// onPress={() => {
+//                 let id = Math.floor(Math.random() * 1000)
+//                 AsyncStorage.setItem('tarefas', JSON.stringify({text: text, description: description, id: id, everyDay: true, todaysDate: new Date()}))
+//                 setAddedTask(!AddedTask)
+//             }} 
+// id title description everyDay todaysDate

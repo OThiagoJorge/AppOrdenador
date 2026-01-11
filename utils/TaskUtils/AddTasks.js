@@ -6,6 +6,7 @@ import { GlobalContext } from '../../resources/Context'
 import { styles } from '../../Styles'
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useNavigation } from '@react-navigation/native'
+import { insertTask, createTable, listTasks } from '@/resources/database'
 
 export const AddTasks = () => {
      const navigation = useNavigation()
