@@ -2,8 +2,8 @@ import { Pressable, View, Image } from 'react-native'
 import React, { useContext } from 'react'
 import { styles } from '../Styles'
 import { GlobalContext } from '../resources/Context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import BouncyCheckbox from "react-native-bouncy-checkbox"
+import { insertTask } from '@/resources/database'
 
 export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, i}) => {
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
@@ -46,7 +46,7 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                 }}
                 onPress={() => {
                     let id = Math.floor(Math.random() * 1000)
-                    AsyncStorage.setItem('tarefas', JSON.stringify({text: task.text + ' parte 2', description: task.description, id: id}))
+                    insertTask(task.text + ' parte 2', task.description, false, true)
                     setAddedTask(!AddedTask)
                     let newChecked = [...isChecked]
                     newChecked[task.id] = !newChecked[task.id]

@@ -2,10 +2,10 @@ import { ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext, useRef} from 'react'
 import { styles } from '../../Styles'
 import { GlobalContext } from '../../resources/Context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import  PagerView  from 'react-native-pager-view'
 import { TaskCard } from './TaskCard'
 import { TaskInListMode } from './components/TaskInListMode'
+import { listTasks } from '@/resources/database'
 
 export const Tasks = () => {
     const refPagerView = useRef(null)
@@ -23,8 +23,7 @@ export const Tasks = () => {
 
     useEffect(() => {
         const loadData = async () => {
-          const saved = await AsyncStorage.getItem("tarefas")
-          const value = JSON.parse(saved)
+          value = listTasks()
           if (value) {setTasks(task => [...task, value])}
         }
         loadData()

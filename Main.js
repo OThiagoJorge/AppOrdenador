@@ -7,55 +7,7 @@ import { GlobalContext } from './resources/Context'
 import React, {useContext} from 'react'
 import { StatusBar } from 'expo-status-bar'
 import * as Progress from 'react-native-progress'
-import * as SQLite from 'expo-sqlite'
 import { insertTask, createTable, listTasks } from '@/resources/database'
-
-// const DB_NAME = 'example.db'
-
-// let db = null
-
-// async function getDB() {
-//   if (!db) {
-//     db = await SQLite.openDatabaseAsync(DB_NAME)
-//   }
-//   return db
-// }
-
-// async function createTable() {
-//   const db = await getDB()
-
-//   await db.execAsync(`
-//     CREATE TABLE IF NOT EXISTS users (
-//       id INTEGER PRIMARY KEY AUTOINCREMENT,
-//       name TEXT NOT NULL,
-//       email TEXT NOT NULL
-//     )
-//   `)
-
-//   console.log('Tabela criada com sucesso')
-// }
-
-// async function insertUser(name, email) {
-//   const db = await getDB()
-
-//   const result = await db.runAsync(
-//     'INSERT INTO users (name, email) VALUES (?, ?)',
-//     [name, email]
-//   )
-
-//   console.log('Usuário inserido com ID:', result.lastInsertRowId)
-// }
-
-// async function listUsers() {
-//   const db = await getDB()
-
-//   const users = await db.getAllAsync(
-//     'SELECT * FROM users'
-//   )
-
-//   console.log('Usuários cadastrados:')
-//   console.log(users)
-// }
 
 export const Main = () => {
 
@@ -73,7 +25,7 @@ export const Main = () => {
           useNativeDriver={false}               
         />
         <Tasks />
-        {/* <Pressable onPress={createTable} style={styles.button}>
+        <Pressable onPress={createTable} style={styles.button}>
           <Text>Criar tabela</Text>
         </Pressable>
         <Pressable onPress={() => insertTask('Tarefa', 'Descrição da tarefa', true, new Date())} style={styles.button}>
@@ -81,7 +33,7 @@ export const Main = () => {
         </Pressable>
         <Pressable onPress={listTasks} style={styles.button}>
           <Text>Listar tarefas</Text>
-        </Pressable> */}
+        </Pressable>
         <Pressable
           title="+"
           onPress={() => {

@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { styles } from '../Styles'
 import { GlobalContext } from '../resources/Context'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { listTasks } from '@/resources/database'
 
 export const TrashScreen = () => {
 
@@ -14,8 +14,7 @@ export const TrashScreen = () => {
 
     useEffect(() => {
         const loadData = async () => {
-          const saved = await AsyncStorage.getItem("tarefas")
-          const value = JSON.parse(saved)
+          const value = listTasks()
           if (value) {setTasks(task => [...task, value])}
         }
         loadData()
