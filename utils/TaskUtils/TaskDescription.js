@@ -1,5 +1,5 @@
 import { Pressable, TextInput, Alert } from 'react-native'
-import { styles } from '../../Styles'
+import { styles } from '@/Styles'
 
 export const TaskDescription = ({task, descriptionInputIsVisible, setDescriptionInputIsVisible, onChangeText}) => {
     return (
@@ -8,7 +8,7 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
             style={{
                 marginLeft: 60,
                 width: '70%',
-                backgroundColor: 'black'
+                backgroundColor: '#0a7e8c'
             }}
             onLongPress={() => setDescriptionInputIsVisible(!descriptionInputIsVisible)}
         >

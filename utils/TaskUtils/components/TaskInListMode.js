@@ -9,7 +9,7 @@ import {
 import React, { useState } from 'react'
 import { TaskTitle } from './TaskTitle'
 import { TaskDescription } from '../TaskDescription'
-import { styles } from '../../../Styles'
+import { styles } from '@/Styles'
 
 export const TaskInListMode = ({task, isChecked, i}) => {
 

@@ -15,7 +15,7 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                     backgroundColor: inListMode ? 'transparent' : 'yellow'
                 }}
                 onChangeText={onChangeText}
-                value={task.text}
+                value={task.title}
                 placeholder={"Título"}
                 editable={taskTitleInputIsVisible}
                 multiline={true}

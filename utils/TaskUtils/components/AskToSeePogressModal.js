@@ -1,5 +1,5 @@
 import { Text, Pressable, View, Modal, Alert } from 'react-native'
-import { styles } from '../../../Styles'
+import { styles } from '@/Styles'
 import { useNavigation } from '@react-navigation/native'
 
 export const AskToSeeProgressModal = ({ modalVisible, setModalVisible }) => {

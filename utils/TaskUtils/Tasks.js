@@ -1,7 +1,7 @@
 import { ScrollView } from 'react-native'
 import React, {useState, useEffect, useContext, useRef} from 'react'
-import { styles } from '../../Styles'
-import { GlobalContext } from '../../resources/Context'
+import { styles } from '@/Styles'
+import { GlobalContext } from '@/resources/Context'
 import  PagerView  from 'react-native-pager-view'
 import { TaskCard } from './TaskCard'
 import { TaskInListMode } from './components/TaskInListMode'
@@ -14,7 +14,6 @@ export const Tasks = () => {
         refPagerView.current.setPage(pageNumber)
     }
 
-    const {AddedTask, setAddedTask} = useContext(GlobalContext)
     const {isChecked, setChecked} = useContext(GlobalContext)
     const {isCard, setIsCard} = useContext(GlobalContext)
     const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
@@ -22,13 +21,19 @@ export const Tasks = () => {
     const [Tasks, setTasks] = useState([])
 
     useEffect(() => {
-        const loadData = async () => {
-          value = listTasks()
-          if (value) {setTasks(task => [...task, value])}
+        loadTasks()
+      }, [])
+    
+    const loadTasks = async () => {
+    try {
+        const data = await listTasks()
+        if (Array.isArray(data)) {
+        setTasks(data)
         }
-        loadData()
-        console.log(Tasks)
-    }, [AddedTask])
+    } catch (error) {
+        console.error('Erro ao listar tarefas:', error)
+    }
+    }
 
     if(isCard && !arrowIsClicked) {
         return (

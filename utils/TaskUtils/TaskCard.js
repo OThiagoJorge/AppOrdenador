@@ -1,11 +1,11 @@
 import { Pressable, View } from 'react-native'
-import { styles } from '../../Styles'
+import { styles } from '@/Styles'
 import { ProgressRotation } from '../ProgressRotation'
 import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
 import * as Progress from 'react-native-progress'
 import React, {useState, useEffect, useContext} from 'react'
 import { AskToSeeProgressModal } from './components/AskToSeePogressModal'
-import { GlobalContext } from '../../resources/Context'
+import { GlobalContext } from '@/resources/Context'
 import { TaskTitleAndDescription } from './components/TaskTitleAndDescription'
 import { Timer } from './components/Timer'
 
@@ -66,7 +66,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                     style={styles.UpperProgressBar}
                     progress={0.1} 
                     width={null}
-                    color='blue'
+                    color='#0a7e8c'
                     height={30}
                     useNativeDriver={false}
                 />

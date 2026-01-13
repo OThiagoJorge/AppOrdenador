@@ -2,8 +2,8 @@ import { Text, Button, TextInput, Modal, Pressable } from 'react-native'
 import React, {useState, useContext} from 'react'
 // Pra concertar essas importações cheias de pontos, termine o tutorial. https://dev.to/cathylai/how-to-use-path-aliases-in-react-native-with-expo-1fl2
 // Mas cuidado porque ocorre algum erro ao instalar o babel relacionado ao expo
-import { GlobalContext } from '../../resources/Context'
-import { styles } from '../../Styles'
+import { GlobalContext } from '@/resources/Context'
+import { styles } from '@/Styles'
 import { useNavigation } from '@react-navigation/native'
 import { insertTask } from '@/resources/database'
 

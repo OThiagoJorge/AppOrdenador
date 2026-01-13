@@ -25,7 +25,7 @@ export const ProgressRotation = ({task}) => {
                 size={55}
                 width={5}
                 fill={isChecked[task.id] ? 100 : 0}
-                tintColor="#00e0ff"
+                tintColor="#0a7e8c"
                 onAnimationComplete={() => console.log('onAnimationComplete')}
                 backgroundColor="transparent"
             >

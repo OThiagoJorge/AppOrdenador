@@ -14,33 +14,29 @@ export const styles0 = StyleSheet.create({
   UpperProgressBar: {
     height: 30, 
     width: '100%', 
-    borderBottomWidth: 2, 
+    borderBottomWidth: 0, 
     borderWidth: 0, 
     borderColor: 'black', 
     borderRadius: 0, 
     transform: [{ rotate: '-90deg' }], 
     position: 'absolute', 
     left: -173, 
-    top: 70
+    top: 70,
+    backgroundColor: 'white'
   },
   BottomProgressBar: {
     height: 30, 
     width: '100%', 
-    borderTopWidth: 2, 
+    borderTopWidth: 0, 
     borderWidth: 0, 
     borderColor: 'black', 
     borderRadius: 0, 
     transform: [{ rotate: '90deg' }], 
     position: 'absolute', 
     left: -173, 
-    bottom: 70
-  },
-  // input: {
-  //   height: 40,
-  //   margin: 12,
-  //   borderWidth: 1,
-  //   padding: 10,
-  // }
+    bottom: 70,
+    backgroundColor: 'white'
+  }
 })
 
 export const styles = StyleSheet.create({
