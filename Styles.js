@@ -22,7 +22,7 @@ export const styles0 = StyleSheet.create({
     position: 'absolute', 
     left: -173, 
     top: 70,
-    backgroundColor: 'white'
+    backgroundColor: '#f0f0f0'
   },
   BottomProgressBar: {
     height: 30, 
@@ -35,7 +35,7 @@ export const styles0 = StyleSheet.create({
     position: 'absolute', 
     left: -173, 
     bottom: 70,
-    backgroundColor: 'white'
+    backgroundColor: '#f0f0f0'
   }
 })
 

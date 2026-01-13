@@ -1,9 +1,10 @@
-import { Pressable, Text } from 'react-native'
+import { Pressable } from 'react-native'
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons'
 import { GlobalContext } from './Context'
 import React, { useContext } from 'react'
 
 export const ArrowLeft = ( {setDate, date } ) => {
+  
     const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
 
     return (
@@ -14,15 +15,12 @@ export const ArrowLeft = ( {setDate, date } ) => {
         setDate(newDate)
         setArrowIsClicked(!arrowIsClicked)
       }}>
-        <Text 
-          style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
-        > 
-          <SimpleLineIcons 
-            name="arrow-left-circle" 
-            size={24} 
-            color="black" 
-          />
-        </Text>
+        <SimpleLineIcons 
+          name="arrow-left-circle" 
+          size={24} 
+          color="black"
+          style={{fontWeight: 'bold',fontSize: 24, color: 'black'}} 
+        />
       </Pressable>
     )
 }
@@ -39,15 +37,12 @@ export const ArrowRight = ( {setDate, date } ) => {
           setArrowIsClicked(!arrowIsClicked)
         }
       }>
-        <Text 
-          style={{fontWeight: 'bold',fontSize: 24, color: 'black'}}
-        >
-          <SimpleLineIcons 
-            name="arrow-right-circle" 
-            size={24} 
-            color="black" 
-          /> 
-        </Text>
+        <SimpleLineIcons 
+          name="arrow-right-circle" 
+          size={24} 
+          color="black"
+          style={{fontWeight: 'bold',fontSize: 24, color: 'black'}} 
+        /> 
       </Pressable>
     )
 }

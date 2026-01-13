@@ -22,17 +22,17 @@ export const Tasks = () => {
 
     useEffect(() => {
         loadTasks()
-      }, [])
+    }, [])
     
     const loadTasks = async () => {
-    try {
-        const data = await listTasks()
-        if (Array.isArray(data)) {
-        setTasks(data)
+        try{
+            const data = await listTasks()
+            if (Array.isArray(data)) {
+            setTasks(data)
+            }
+        }catch(error){
+            console.error('Erro ao listar tarefas:', error)
         }
-    } catch (error) {
-        console.error('Erro ao listar tarefas:', error)
-    }
     }
 
     if(isCard && !arrowIsClicked) {

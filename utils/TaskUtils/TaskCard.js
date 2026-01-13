@@ -57,7 +57,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                          left: 0, 
                          top: 0, 
                          zIndex: 1, 
-                         borderRightWidth: 5, 
+                         borderRightWidth: 0, 
                          borderColor: '#d1d5db'
                     }} 
                     onPress={() => setModalVisible(true)}

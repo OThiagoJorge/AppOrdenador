@@ -1,6 +1,6 @@
 import { Pressable, View, Image } from 'react-native'
 import React, { useContext } from 'react'
-import { styles } from '.@/Styles'
+import { styles } from '@/Styles'
 import { GlobalContext } from '../resources/Context'
 import BouncyCheckbox from "react-native-bouncy-checkbox"
 import { insertTask } from '@/resources/database'
