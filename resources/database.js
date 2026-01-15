@@ -50,7 +50,3 @@ export async function listTasks() {
   console.log(tasks)
   return tasks
 }
-
-// let id = Math.floor(Math.random() * 1000)
-//                 AsyncStorage.setItem('tarefas', JSON.stringify({text: text, description: description, id: id, everyDay: true, todaysDate: new Date()}))
-//                 setAddedTask(!AddedTask)

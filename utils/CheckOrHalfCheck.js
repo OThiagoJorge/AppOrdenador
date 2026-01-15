@@ -17,7 +17,9 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
             borderColor: 'black',
             borderWidth: 2,
             borderRadius: 30,
-            padding: 0
+            padding: 0,
+            backgroundColor: '#0a7e8c',
+            borderColor: '#0a7e8c'
         }}>
             <BouncyCheckbox 
                 style={styles.checkbox}
@@ -45,7 +47,6 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     backgroundColor: 'white'
                 }}
                 onPress={() => {
-                    let id = Math.floor(Math.random() * 1000)
                     insertTask(task.text + ' parte 2', task.description, false, true)
                     setAddedTask(!AddedTask)
                     let newChecked = [...isChecked]

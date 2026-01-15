@@ -56,7 +56,9 @@ export const styles1 = StyleSheet.create({
   checkbox: {
     margin: 0,
     width: '100%',
-    height: 40
+    height: 40,
+    backgroundColor: 'white',
+    borderRadius: 50
   },
    pagerView: {
     flex: 1
