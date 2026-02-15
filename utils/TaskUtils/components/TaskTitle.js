@@ -1,4 +1,5 @@
-import { TextInput, Pressable } from 'react-native'
+import { updateTask } from '@/resources/database'
+import { TextInput, Pressable, Text } from 'react-native'
 
 export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVisible, onChangeText, inListMode }) => {
     return (
@@ -14,12 +15,17 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                     fontSize: 20,
                     backgroundColor: inListMode ? 'transparent' : 'yellow'
                 }}
-                onChangeText={onChangeText}
+                // Corrigir bug que impede o texto de ser alterado
                 value={task.title}
                 placeholder={"Título"}
                 editable={taskTitleInputIsVisible}
                 multiline={true}
             />
+            <Pressable
+                onPress={() => updateTask(task.id, {title: task.title})}
+            >
+                <Text>Enviar</Text>
+            </Pressable>
         </Pressable>
     )
 }

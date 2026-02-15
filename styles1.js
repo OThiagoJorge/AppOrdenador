@@ -55,7 +55,7 @@ export const styles1 = StyleSheet.create({
   },
   checkbox: {
     margin: 0,
-    width: '100%',
+    width: 40,
     height: 40,
     backgroundColor: 'white',
     borderRadius: 50

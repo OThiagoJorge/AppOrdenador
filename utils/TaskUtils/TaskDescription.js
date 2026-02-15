@@ -1,4 +1,4 @@
-import { Pressable, TextInput, Alert } from 'react-native'
+import { Pressable, TextInput, Alert, Text } from 'react-native'
 import { styles } from '@/Styles'
 
 export const TaskDescription = ({task, descriptionInputIsVisible, setDescriptionInputIsVisible, onChangeText}) => {
@@ -20,6 +20,11 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
                 editable={descriptionInputIsVisible}
                 multiline={true}
             />
+            <Pressable
+                onPress={() => updateTask(task.id, {description: task.description})}
+            >
+                <Text>Enviar</Text>
+            </Pressable>
         </Pressable>
     )
 }

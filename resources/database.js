@@ -50,3 +50,43 @@ export async function listTasks() {
   console.log(tasks)
   return tasks
 }
+
+export async function updateTask(id, title, description, completed, everyDay) {
+  const db = await getDB()
+
+  await db.runAsync(
+    'UPDATE tasks SET title = ?, description = ?, completed = ?, everyDay = ? WHERE id = ?',
+    [title, description, completed, everyDay, id]
+  )
+
+  console.log('Tarefa atualizada com ID:', id)
+}
+
+export async function deleteTask(id) {
+  const db = await getDB()
+
+  await db.runAsync(
+    'DELETE FROM tasks WHERE id = ?',
+    [id]
+  )
+
+  console.log('Tarefa deletada com ID:', id)
+}
+
+export async function deleteAllTasks() {
+  const db = await getDB()
+
+  await db.runAsync(
+    'DELETE FROM tasks'
+  )
+
+  console.log('Todas as tarefas foram deletadas')
+}
+
+export async function dropTable() {
+  const db = await getDB()
+
+  await db.execAsync('DROP TABLE IF EXISTS tasks')
+
+  console.log('Tabela deletada com sucesso')
+} 
