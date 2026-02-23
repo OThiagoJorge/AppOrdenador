@@ -6,10 +6,12 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { TaskTitle } from './TaskTitle'
 import { TaskDescription } from '../TaskDescription'
 import { styles } from '@/Styles'
+import { deleteTask } from '@/resources/database'
+import { GlobalContext } from '@/resources/Context'
 
 export const TaskInListMode = ({task, isChecked, i}) => {
 
@@ -17,6 +19,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
     const [taskTitleInputIsVisible, setTaskTitleInputIsVisible] = useState(false)
     const [descriptionInputIsVisible, setDescriptionInputIsVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
+    const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
 
     return (
         <View 
@@ -89,7 +92,13 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                     <Entypo name="dots-three-vertical" size={24} color="black" />
                 </MenuTrigger>
                 <MenuOptions style={{padding: 15}}>
-                    <MenuOption onSelect={() => alert(`example`)} text='Excluir' />
+                    <MenuOption 
+                        onSelect={
+                            () => deleteTask(task.id)
+                            .then(() => setTaskDidUpdate(!taskDidUpdate))
+                        } 
+                        text='Excluir' 
+                    />
                 </MenuOptions>
             </Menu>
         </View>

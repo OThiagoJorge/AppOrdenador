@@ -47,7 +47,8 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     backgroundColor: 'white'
                 }}
                 onPress={() => {
-                    insertTask(task.text + ' parte 2', task.description, false, true)
+                    let title = task.text + ' parte 2'
+                    insertTask(title, task.description, false, true)
                     setAddedTask(!AddedTask)
                     let newChecked = [...isChecked]
                     newChecked[task.id] = !newChecked[task.id]

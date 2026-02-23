@@ -17,18 +17,19 @@ export const Tasks = () => {
     const {isChecked, setChecked} = useContext(GlobalContext)
     const {isCard, setIsCard} = useContext(GlobalContext)
     const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
+    const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
 
     const [Tasks, setTasks] = useState([])
 
     useEffect(() => {
         loadTasks()
-    }, [])
+    }, [taskDidUpdate])
     
     const loadTasks = async () => {
         try{
             const data = await listTasks()
             if (Array.isArray(data)) {
-            setTasks(data)
+                setTasks(data)
             }
         }catch(error){
             console.error('Erro ao listar tarefas:', error)

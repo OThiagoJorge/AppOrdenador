@@ -11,6 +11,7 @@ export const ContextProvider = ({children}) => {
     const [isCard, setIsCard] = useState(false)
     const [arrowIsClicked, setArrowIsClicked] = useState(false)
     const [showTimer, setShowTimer] = useState(false)
+    const [taskDidUpdate, setTaskDidUpdate] = useState(false)
 
     return (
         <GlobalContext value={{
@@ -20,7 +21,9 @@ export const ContextProvider = ({children}) => {
             isChecked, setChecked,
             isCard, setIsCard,
             arrowIsClicked, setArrowIsClicked,
-            showTimer, setShowTimer
+            showTimer, setShowTimer,
+            taskDidUpdate, setTaskDidUpdate
+
         }}>
             {children}
         </GlobalContext>
