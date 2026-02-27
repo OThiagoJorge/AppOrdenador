@@ -1,10 +1,17 @@
-import { Pressable, TextInput, Alert, Text } from 'react-native'
+import { Pressable, TextInput, Text } from 'react-native'
 import { styles } from '@/Styles'
+import { useState, useContext } from 'react'
+import { GlobalContext } from '@/resources/Context'
+import { updateTask } from '@/resources/database'
 
 export const TaskDescription = ({task, descriptionInputIsVisible, setDescriptionInputIsVisible, onChangeText}) => {
+
+    const [description, setDescription] = useState(task.description)
+
+    const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
+
     return (
         <Pressable 
-            onPress={() =>Alert.alert('clicado')}
             style={{
                 marginLeft: 60,
                 width: '70%',
@@ -14,17 +21,22 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
         >
             <TextInput
                 style={[styles.input, {color: 'white'}]}
-                onChangeText={onChangeText}
-                value={task.description}
+                onChangeText={(text) => setDescription(text)}
+                value={description}
                 placeholder="Descrição"
                 editable={descriptionInputIsVisible}
                 multiline={true}
             />
-            <Pressable
-                onPress={() => updateTask(task.id, {description: task.description})}
-            >
-                <Text>Enviar</Text>
-            </Pressable>
+            {descriptionInputIsVisible &&
+                <Pressable
+                    onPress={() => {
+                        updateTask(task.id, {description: description})
+                        setTaskDidUpdate(!taskDidUpdate)
+                    }}
+                >
+                    <Text>Enviar</Text>
+                </Pressable>
+    }
         </Pressable>
     )
 }

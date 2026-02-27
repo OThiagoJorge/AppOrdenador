@@ -14,6 +14,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
     const [modalVisible, setModalVisible] = useState(false)
 
     const {showTimer, setShowTimer} = useContext(GlobalContext)
+    const {taskTitleInputIsVisible, setTaskTitleInputIsVisible, descriptionInputIsVisible, setDescriptionInputIsVisible} = useContext(GlobalContext)
 
     const [timerCount, setTimer] = useState(60)
     
@@ -32,7 +33,6 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
 
     return ( 
         <View 
-            style={{backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}}
             key={i}
         >
             <AskToSeeProgressModal 
@@ -48,6 +48,10 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                     styles.task,
                     {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
                 ]}
+                onPress={() => {
+                    setDescriptionInputIsVisible(false)
+                    setTaskTitleInputIsVisible(false)
+                }}
             >  
                 <Pressable 
                     style={{

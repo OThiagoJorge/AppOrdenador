@@ -1,7 +1,14 @@
 import { updateTask } from '@/resources/database'
 import { TextInput, Pressable, Text } from 'react-native'
+import { useState, useContext } from 'react'
+import { GlobalContext } from '@/resources/Context'
 
 export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVisible, onChangeText, inListMode }) => {
+
+    const [title, setTitle] = useState(task.title)
+
+    const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
+
     return (
         <Pressable 
             style={{
@@ -16,16 +23,22 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                     backgroundColor: inListMode ? 'transparent' : 'yellow'
                 }}
                 // Corrigir bug que impede o texto de ser alterado
-                value={task.title}
-                placeholder={"Título"}
+                value={title}
+                placeholder={task.title}
                 editable={taskTitleInputIsVisible}
                 multiline={true}
+                onChangeText={(text) => setTitle(text)}
             />
-            <Pressable
-                onPress={() => updateTask(task.id, {title: task.title})}
-            >
-                <Text>Enviar</Text>
-            </Pressable>
+            {taskTitleInputIsVisible && 
+                <Pressable
+                    onPress={() => {
+                        updateTask(task.id, title)
+                        setTaskDidUpdate(!taskDidUpdate)
+                    }}
+                >
+                    <Text>Enviar</Text>
+                </Pressable>
+    }
         </Pressable>
     )
 }
