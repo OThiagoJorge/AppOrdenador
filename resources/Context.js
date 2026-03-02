@@ -6,7 +6,6 @@ export const ContextProvider = ({children}) => {
 
     const [AddedTask, setAddedTask] = useState(false)
     const [description, setDescription] = useState('')
-    const [modalVisible, setModalVisible] = useState(false)
     const [isChecked, setChecked] = useState([])
     const [isCard, setIsCard] = useState(false)
     const [arrowIsClicked, setArrowIsClicked] = useState(false)
@@ -19,7 +18,6 @@ export const ContextProvider = ({children}) => {
         <GlobalContext 
             value={{
                 AddedTask, setAddedTask, 
-                modalVisible, setModalVisible, 
                 description, setDescription, 
                 isChecked, setChecked,
                 isCard, setIsCard,

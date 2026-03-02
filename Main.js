@@ -1,38 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
 import { Text, Pressable } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import * as Progress from 'react-native-progress'
-
 import { styles } from './Styles'
-import { AddTasks } from './utils/TaskUtils/AddTasks'
 import { Tasks } from './utils/TaskUtils/Tasks'
-import { GlobalContext } from './resources/Context'
-
-import { listTasks } from '@/resources/database'
+import { useNavigation } from '@react-navigation/native'
 
 export const Main = () => {
-  const [tasks, setTasks] = useState([])
-  const { modalVisible, setModalVisible } = useContext(GlobalContext)
 
-  useEffect(() => {
-    loadTasks()
-  }, [])
-
-  const loadTasks = async () => {
-    try {
-      const data = await listTasks()
-      if (Array.isArray(data)) {
-        setTasks(data)
-      }
-    } catch (error) {
-      console.error('Erro ao listar tarefas:', error)
-    }
-  }
+  const navigation = useNavigation()
 
   return (
     <>
       <StatusBar style="auto" />
-
       <Progress.Bar
         progress={0.3}
         width={null}
@@ -42,15 +21,13 @@ export const Main = () => {
         borderRadius={0}
         useNativeDriver={false}
       />
-
       <Tasks />
       <Pressable
-        onPress={() => setModalVisible(!modalVisible)}
+        onPress={() => navigation.navigate('AddTasks')}
         style={styles.button}
       >
         <Text style={styles.text}>+ Nova tarefa</Text>
       </Pressable>
-      <AddTasks />
     </>
   )
 }

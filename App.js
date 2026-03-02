@@ -8,6 +8,7 @@ import { UpperBar } from './resources/UpperBar'
 import { MenuProvider } from 'react-native-popup-menu'
 import { TrashScreen } from './utils/TrashScreen'
 import { ProgressScreen } from './utils/ProgressScreen'
+import { AddTasks } from './utils/TaskUtils/AddTasks'
 
 export const HomeScreen = () => {
     return (
@@ -39,6 +40,13 @@ const RootStack = createNativeStackNavigator({
         headerTitle: (props) => <UpperBar {...props} />,
         headerBackVisible: true
       },
+    },
+    AddTasks: {
+      screen: AddTasks,
+      options: {
+        headerTitle: (props) => <UpperBar {...props} />,
+        headerBackVisible: true
+      }
     }
   }
 })

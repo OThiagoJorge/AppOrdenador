@@ -1,27 +1,22 @@
-import { Text, Button, TextInput, Modal, Pressable } from 'react-native'
+import { Text, TextInput, View, Pressable } from 'react-native'
 import React, {useState, useContext} from 'react'
 import { GlobalContext } from '@/resources/Context'
 import { styles } from '@/Styles'
-import { useNavigation } from '@react-navigation/native'
 import { insertTask } from '@/resources/database'
 import { DropdownExibitionPattern } from './DropdownExibitionPattern'
+import { Calendar } from 'react-native-calendars'
+import SelectDropdown from 'react-native-select-dropdown'
 
 export const AddTasks = () => {
-     const navigation = useNavigation()
 
-    const {AddedTask, setAddedTask, modalVisible, setModalVisible, description, setDescription} = useContext(GlobalContext)
+    const {AddedTask, setAddedTask, description, setDescription} = useContext(GlobalContext)
 
     const [text, setText] = useState('')
 
   return (
-    <Modal
-        style={styles.modal}
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => {
-        setModalVisible(!modalVisible)
-    }}>
+    <View
+        style={{flex: 1, height: '100%', backgroundColor: '#f3f4f6', alignItems: 'center'}}     
+    >
         <TextInput
             style={{height: 40, padding: 5}}
             placeholder="Título"
@@ -37,21 +32,25 @@ export const AddTasks = () => {
             }}            
         />
         <DropdownExibitionPattern />
-        <Button
-            title="Selecionar datas"
-            onPress={() => navigation.navigate('Calendar')} 
+        <SelectDropdown
+            data={['Opção 1', 'Opção 2', 'Opção 3']}
+            onSelect={(selectedItem, index) => {
+                console.log(selectedItem, index)
+            }}
         />
-        <Button
-            title="Adicionar tarefa"
+        <Calendar
+            onDayPress={day => {
+                console.log('selected day', day)
+            }}
+        />        
+        <Pressable
             onPress={() => {
                 insertTask(text, description, false, true)
                 setAddedTask(!AddedTask)
-            }}       
-        />
-        <Pressable
-            onPress={() => setModalVisible(!modalVisible)}
+            }}      
+            style={[styles.button, {bottom: 0, position: 'absolute'}]}
             >
-            <Text>fechar</Text>
-        </Pressable>
-    </Modal>
+            <Text style={styles.text}>+ Adicionar tarefa</Text>
+        </Pressable>       
+    </View>
 )}
