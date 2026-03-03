@@ -6,7 +6,7 @@ import BouncyCheckbox from "react-native-bouncy-checkbox"
 import { insertTask } from '@/resources/database'
 import { updateTask } from '@/resources/database'
 
-export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, i}) => {
+export const CheckOrHalfCheck = ({task, goToAnotherPage, i}) => {
 
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
     const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
@@ -27,13 +27,9 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
         }}>
             <BouncyCheckbox 
                 style={styles.checkbox}
-                isChecked={isChecked[task.id]}
+                isChecked={task.completed}
                 onPress={() => {
-                    let newChecked = [...isChecked]
-                    newChecked[task.id] = !newChecked[task.id]
-                    setChecked(newChecked)
                     let completed = !task.completed
-                    completed = completed
                     updateTask(task.id, task.title, task.description, completed, task.everyDay)
                     setTimeout(() => {
                         goToAnotherPage(i + 1)
@@ -58,9 +54,6 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     let title = task.text + ' parte 2'
                     insertTask(title, task.description, false, true)
                     setAddedTask(!AddedTask)
-                    let newChecked = [...isChecked]
-                    newChecked[task.id] = !newChecked[task.id]
-                    setChecked(newChecked)
                     setTimeout(() => {
                         goToAnotherPage(i + 1)
                     }, 7000)

@@ -9,7 +9,7 @@ import { GlobalContext } from '@/resources/Context'
 import { TaskTitleAndDescription } from './components/TaskTitleAndDescription'
 import { Timer } from './components/Timer'
 
-export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
+export const TaskCard = ({task, goToAnotherPage, i}) => {
 
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -46,7 +46,7 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
             <Pressable
                 style={[
                     styles.task,
-                    {backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white', transition: '7s'}
+                    {backgroundColor: task.completed ? '#d1fae5' : 'white', transition: '7s'}
                 ]}
                 onPress={() => {
                     setDescriptionInputIsVisible(false)
@@ -84,11 +84,8 @@ export const TaskCard = ({task, isChecked, setChecked, goToAnotherPage, i}) => {
                 />
                 <TaskTitleAndDescription 
                     task={task} 
-                    isChecked={isChecked}
                 />
                 <CheckOrHalfCheck 
-                    isChecked={isChecked} 
-                    setChecked={setChecked} 
                     task={task} 
                     goToAnotherPage={goToAnotherPage}
                     i={i}

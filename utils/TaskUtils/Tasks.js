@@ -1,5 +1,5 @@
 import { ScrollView } from 'react-native'
-import React, {useState, useEffect, useContext, useRef} from 'react'
+import React, {useState, useEffect, useContext, useRef, use} from 'react'
 import { styles } from '@/Styles'
 import { GlobalContext } from '@/resources/Context'
 import  PagerView  from 'react-native-pager-view'
@@ -14,16 +14,19 @@ export const Tasks = () => {
         refPagerView.current.setPage(pageNumber)
     }
 
-    const {isChecked, setChecked} = useContext(GlobalContext)
     const {isCard, setIsCard} = useContext(GlobalContext)
     const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
     const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
-
-    const [Tasks, setTasks] = useState([])
+    const {Tasks, setTasks} = useContext(GlobalContext)
+    const {completedPercentage, setCompletedPercentage} = useContext(GlobalContext)
 
     useEffect(() => {
         loadTasks()
     }, [taskDidUpdate])
+
+    useEffect(() => {
+        calculusCompletedPercentage()
+    }, [Tasks])
     
     const loadTasks = async () => {
         try{
@@ -33,6 +36,14 @@ export const Tasks = () => {
             }
         }catch(error){
             console.error('Erro ao listar tarefas:', error)
+        }
+    }
+
+    const calculusCompletedPercentage = async () => {
+        if (Tasks.length > 0) {
+            const percentage = (Tasks.filter(task => task.completed).length / Tasks.length) * 100
+            setCompletedPercentage(percentage)
+            console.log('Completed Percentage:', percentage)
         }
     }
 
@@ -48,8 +59,6 @@ export const Tasks = () => {
                     <TaskCard 
                         key={i}
                         task={task}
-                        isChecked={isChecked}
-                        setChecked={setChecked}
                         goToAnotherPage={goToAnotherPage}
                         i={i}
                     />
@@ -62,7 +71,6 @@ export const Tasks = () => {
                     <TaskInListMode 
                         key={i}
                         task={task}
-                        isChecked={task.completed}
                         i={i}
                     />
                 ))}

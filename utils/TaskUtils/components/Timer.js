@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { View, Text, Pressable } from "react-native"
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 const InitialTime = 15 * 60
 
@@ -42,17 +43,21 @@ export const Timer = () => {
         fontFamily: "Arial", 
         fontSize: 20, 
         backgroundColor: "#0a7e8c", 
-        padding: 10, 
-        borderRadius: 35
+        padding: 0, 
+        borderTopLeftRadius: 35,
+        borderTopRightRadius: 35,
+        alignItems: "center",
+        justifyContent: "center",
+        width: 200
       }}
     >
       <Text style={{fontSize: 45, color: "white"}}>{formatTime(time)}</Text>
-      <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10, backgroundColor: "yellow", width: "100%"}}>
         <Pressable onPress={() => setPlaying(true)}>
-          <Text style={{ color: "white" }}>Iniciar</Text>
+          <Text style={{ color: "black" }}>Iniciar</Text>
         </Pressable>
         <Pressable onPress={() => setPlaying(false)}>
-          <Text style={{ color: "white" }}>Pausar</Text>
+          <FontAwesome name="pause" size={24} color="black" />
         </Pressable>
         <Pressable
             onPress={() => {
@@ -60,7 +65,7 @@ export const Timer = () => {
             setTime(InitialTime)
             }}
         >
-            <Text style={{ color: "white" }}>Resetar</Text>
+            <Text style={{ color: "black" }}>Resetar</Text>
         </Pressable>
       </View>
     </View>

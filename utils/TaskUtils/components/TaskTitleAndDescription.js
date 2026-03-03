@@ -4,7 +4,7 @@ import { TaskDescription } from '../TaskDescription'
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '@/resources/Context'
 
-export const TaskTitleAndDescription = ({task, isChecked}) => {
+export const TaskTitleAndDescription = ( {task} ) => {
     
     const [text, onChangeText] = useState('Useless Text')
     const {taskTitleInputIsVisible, setTaskTitleInputIsVisible, descriptionInputIsVisible, setDescriptionInputIsVisible} = useContext(GlobalContext)
@@ -18,14 +18,12 @@ export const TaskTitleAndDescription = ({task, isChecked}) => {
                 taskTitleInputIsVisible={taskTitleInputIsVisible} 
                 setTaskTitleInputIsVisible={setTaskTitleInputIsVisible} 
                 onChangeText={onChangeText} 
-                isChecked={isChecked} 
             />
             <TaskDescription 
                 task={task} 
                 descriptionInputIsVisible={descriptionInputIsVisible} 
                 setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
                 onChangeText={onChangeText}
-                isChecked={isChecked}
             />
         </View>
     )

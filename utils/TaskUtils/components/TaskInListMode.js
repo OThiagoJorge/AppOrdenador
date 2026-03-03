@@ -13,7 +13,7 @@ import { styles } from '@/Styles'
 import { deleteTask } from '@/resources/database'
 import { GlobalContext } from '@/resources/Context'
 
-export const TaskInListMode = ({task, isChecked, i}) => {
+export const TaskInListMode = ({task, i}) => {
 
     const [text, onChangeText] = useState('Useless Text')
     const [taskTitleInputIsVisible, setTaskTitleInputIsVisible] = useState(false)
@@ -24,7 +24,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
     return (
         <View 
             style={{
-                backgroundColor: isChecked ? '#d1fae5' : 'white',
+                backgroundColor: task.completed ? '#d1fae5' : 'white',
                 transition: '7s', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
@@ -39,7 +39,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                 <Pressable
                     onPress={() => setModalVisible(true)}
                     style={[{
-                    backgroundColor: isChecked ? '#d1fae5' : 'white',
+                    backgroundColor: task.completed ? '#d1fae5' : 'white',
                     transition: '7s', 
                     width: '85%', 
                     padding: 10, 
@@ -55,7 +55,6 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                         taskTitleInputIsVisible={taskTitleInputIsVisible} 
                         setTaskTitleInputIsVisible={setTaskTitleInputIsVisible} 
                         onChangeText={onChangeText} 
-                        isChecked={isChecked}
                         inListMode={true} 
                     />
                 </Pressable>
@@ -75,7 +74,6 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                                 descriptionInputIsVisible={descriptionInputIsVisible} 
                                 setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
                                 onChangeText={onChangeText}
-                                isChecked={isChecked}
                             />
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
