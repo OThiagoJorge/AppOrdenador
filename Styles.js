@@ -81,7 +81,19 @@ export const styles0 = StyleSheet.create({
     dropdownItemIconStyle: {
       fontSize: 28,
       marginRight: 8,
-    }
+    },
+    counter: {
+    fontSize: 48,
+    color: '#fff',
+    marginHorizontal: 20,
+    minWidth: 80,
+    textAlign: 'center',
+  },
+  buttonText: {
+    fontSize: 32,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 })
 
 export const styles = StyleSheet.create({

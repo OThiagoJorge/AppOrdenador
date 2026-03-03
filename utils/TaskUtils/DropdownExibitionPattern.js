@@ -15,6 +15,7 @@ const ExibitionPattern = [
 export const DropdownExibitionPattern = () => {
     return (
         <SelectDropdown
+            style={styles.dropdownStyle}
             data={ExibitionPattern}
             onSelect={(selectedItem, index) => {
                 console.log(selectedItem, index)
