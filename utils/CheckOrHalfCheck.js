@@ -7,7 +7,10 @@ import { insertTask } from '@/resources/database'
 import { updateTask } from '@/resources/database'
 
 export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, i}) => {
+
     const {AddedTask, setAddedTask} = useContext(GlobalContext)
+    const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
+
     return (
         <View style={{
             position: 'absolute',
@@ -29,10 +32,13 @@ export const CheckOrHalfCheck = ({isChecked, setChecked, task, goToAnotherPage, 
                     let newChecked = [...isChecked]
                     newChecked[task.id] = !newChecked[task.id]
                     setChecked(newChecked)
-                    updateTask(task.id, task.text, task.description, isChecked[task.id], task.everyDay)
+                    let completed = !task.completed
+                    completed = completed
+                    updateTask(task.id, task.title, task.description, completed, task.everyDay)
                     setTimeout(() => {
                         goToAnotherPage(i + 1)
                     }, 7000)
+                    setTaskDidUpdate(!taskDidUpdate)
                 }}
                 fillColor='#0a7e8c'
                 size={40}
