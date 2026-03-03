@@ -62,7 +62,7 @@ export const Tasks = () => {
                     <TaskInListMode 
                         key={i}
                         task={task}
-                        isChecked={isChecked}
+                        isChecked={task.completed}
                         i={i}
                     />
                 ))}

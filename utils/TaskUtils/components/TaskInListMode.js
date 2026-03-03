@@ -24,7 +24,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
     return (
         <View 
             style={{
-                backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white',
+                backgroundColor: isChecked ? '#d1fae5' : 'white',
                 transition: '7s', 
                 flexDirection: 'row', 
                 alignItems: 'center', 
@@ -39,7 +39,7 @@ export const TaskInListMode = ({task, isChecked, i}) => {
                 <Pressable
                     onPress={() => setModalVisible(true)}
                     style={[{
-                    backgroundColor: isChecked[task.id] ? '#d1fae5' : 'white',
+                    backgroundColor: isChecked ? '#d1fae5' : 'white',
                     transition: '7s', 
                     width: '85%', 
                     padding: 10, 
