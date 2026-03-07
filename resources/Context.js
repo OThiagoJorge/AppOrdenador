@@ -14,6 +14,7 @@ export const ContextProvider = ({children}) => {
     const [descriptionInputIsVisible, setDescriptionInputIsVisible] = useState(false)
     const [Tasks, setTasks] = useState([])
     const [completedPercentage, setCompletedPercentage] = useState(0)
+    const [showWeekDaysSelector, setShowWeekDaysSelector] = useState(false)
 
     return (
         <GlobalContext 
@@ -27,7 +28,8 @@ export const ContextProvider = ({children}) => {
                 taskTitleInputIsVisible, setTaskTitleInputIsVisible,
                 descriptionInputIsVisible, setDescriptionInputIsVisible,
                 Tasks, setTasks,
-                completedPercentage, setCompletedPercentage                
+                completedPercentage, setCompletedPercentage,
+                showWeekDaysSelector, setShowWeekDaysSelector                
         }}>
             {children}
         </GlobalContext>

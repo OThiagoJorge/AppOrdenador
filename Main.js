@@ -30,7 +30,7 @@ export const Main = () => {
         onPress={() => navigation.navigate('AddTasks')}
         style={styles.button}
       >
-        <Text style={styles.text}>+ Nova tarefa</Text>
+        <Text style={styles.text}>{'>'} Nova tarefa</Text>
       </Pressable>
     </>
   )

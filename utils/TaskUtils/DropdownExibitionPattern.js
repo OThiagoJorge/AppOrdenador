@@ -2,6 +2,8 @@ import { Text, View } from 'react-native'
 import { styles } from '@/Styles'
 import SelectDropdown from 'react-native-select-dropdown'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '@/resources/Context'
 
 const ExibitionPattern = [
     {title: 'Todos os dias', icon: 'calendar-today'}, //Não exibibir calendário
@@ -13,13 +15,25 @@ const ExibitionPattern = [
 ]
 
 export const DropdownExibitionPattern = () => {
+
+    const [selectedPattern, setSelectedPattern] = useState(null)
+const {showWeekDaysSelector, setShowWeekDaysSelector} = useContext(GlobalContext)
+
     return (
         <SelectDropdown
-            style={styles.dropdownStyle}
+            style={{backgroundColor: 'red'}}
             data={ExibitionPattern}
             onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index)
-            }}
+    setSelectedPattern(selectedItem.title)
+
+    if (selectedItem.title === 'Dias da semana específicos') {
+        setShowWeekDaysSelector(true)
+    } else {
+        setShowWeekDaysSelector(false)
+    }
+
+    console.log(selectedItem, index)
+}}
             renderButton={(selectedItem, isOpened) => {
                 return (
                     <View style={styles.dropdownButtonStyle}>

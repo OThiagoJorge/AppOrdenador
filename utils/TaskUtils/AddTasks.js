@@ -1,4 +1,4 @@
-import { Text, TextInput, View, Pressable } from 'react-native'
+import { Text, TextInput, View, Pressable, Button } from 'react-native'
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '@/resources/Context'
 import { styles } from '@/Styles'
@@ -6,12 +6,67 @@ import { insertTask } from '@/resources/database'
 import { DropdownExibitionPattern } from './DropdownExibitionPattern'
 import { Calendar } from 'react-native-calendars'
 
+const WeekDaysSelector = ({days, selectedDays, toggleDay}) => {
+  return (
+    <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginVertical: 20,
+              backgroundColor: 'green',
+              borderRadius: 10
+            }}
+          >
+            {days.map(day => (
+              <Pressable
+                key={day.key}
+                onPress={() => toggleDay(day.key)}
+                style={{
+                  backgroundColor: selectedDays[day.key] ? '#fff' : 'transparent',
+                  padding: 12,
+                }}
+              >
+                <Text style={{ color: selectedDays[day.key] ? '#000' : '#fff' }}>
+                  {day.label}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+  )
+}
+
 export const AddTasks = () => {
 
-  const {AddedTask, setAddedTask, description, setDescription} = useContext(GlobalContext)
+  const days = [
+    { key: 'dom', label: 'Dom' },
+    { key: 'seg', label: 'Seg' },
+    { key: 'ter', label: 'Ter' },
+    { key: 'qua', label: 'Qua' },
+    { key: 'qui', label: 'Qui' },
+    { key: 'sex', label: 'Sex' },
+    { key: 'sab', label: 'Sáb' },
+  ]
+
+  const {AddedTask, setAddedTask, description, setDescription, showWeekDaysSelector, setShowWeekDaysSelector} = useContext(GlobalContext)
 
   const [text, setText] = useState('')
   const [count, setCount] = useState(0)
+  const [selectedDays, setSelectedDays] = useState({
+    seg: false,
+    ter: false,
+    qua: false,
+    qui: false,
+    sex: false,
+    sab: false,
+    dom: false
+  })
+
+  const toggleDay = (day) => {
+    setSelectedDays(prev => ({
+      ...prev,
+      [day]: !prev[day]
+    }))
+  }
 
   const increment = () => {
     setCount(prev => prev + 1)
@@ -40,11 +95,18 @@ export const AddTasks = () => {
             }}            
         />
         <DropdownExibitionPattern />
+        {showWeekDaysSelector && (
+          <WeekDaysSelector
+            days={days}
+            selectedDays={selectedDays}
+            toggleDay={toggleDay}
+          />
+        )}
         <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 20}}>
           <Pressable onPress={decrement}>
             <Text>-</Text>
           </Pressable>
-          <Text>{count}</Text>
+          <Text style={{marginHorizontal: 10, fontSize: 18}}>{count}</Text>
           <Pressable onPress={increment}>
             <Text>+</Text>
           </Pressable>
@@ -69,8 +131,8 @@ export const AddTasks = () => {
                 setAddedTask(!AddedTask)
             }}      
             style={[styles.button, {bottom: 0, position: 'absolute'}]}
-            >
-            <Text style={styles.text}>+ Adicionar tarefa</Text>
+        >
+          <Text style={styles.text}>+ Adicionar tarefa</Text>
         </Pressable>       
     </View>
 )}
