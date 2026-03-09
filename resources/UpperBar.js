@@ -1,6 +1,6 @@
 import { GlobalContext } from './Context'
 import { Pressable, Text } from 'react-native'
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { View } from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native'
@@ -11,9 +11,7 @@ import { MoreOptionUpperBar } from './MoreOptionsUpperBar'
 export const UpperBar = () => {
   const navigation = useNavigation()
 
-  const {isCard, setIsCard} = useContext(GlobalContext)
-
-  const [date, setDate] = useState(new Date())
+  const {isCard, setIsCard, todayDate, setTodayDate} = useContext(GlobalContext)
 
   const formatDate = (d) => {
     const day = String(d.getDate()).padStart(2, "0")
@@ -26,8 +24,8 @@ export const UpperBar = () => {
       // Fazer com que quando muito distante da data atual, clicando em onLongPress, volte para a data atual
     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
       <ArrowLeft
-        date={date}
-        setDate={setDate}
+        date={todayDate}
+        setDate={setTodayDate}
       />
       <Pressable 
         style={{position: 'absolute', left: 40}}
@@ -52,12 +50,12 @@ export const UpperBar = () => {
       <Pressable
         onPress={() => navigation.navigate('Calendar')}
       >
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(date)}</Text>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{formatDate(todayDate)}</Text>
       </Pressable>
       <MoreOptionUpperBar />
       <ArrowRight
-        date={date} 
-        setDate={setDate}
+        date={todayDate} 
+        setDate={setTodayDate}
       />
     </View>
   )

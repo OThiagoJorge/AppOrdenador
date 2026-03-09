@@ -1,51 +1,13 @@
-import { Text, TextInput, View, Pressable, Button } from 'react-native'
+import { Text, TextInput, View, Pressable } from 'react-native'
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '@/resources/Context'
 import { styles } from '@/Styles'
 import { insertTask } from '@/resources/database'
 import { DropdownExibitionPattern } from './DropdownExibitionPattern'
 import { Calendar } from 'react-native-calendars'
-
-const WeekDaysSelector = ({days, selectedDays, toggleDay}) => {
-  return (
-    <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginVertical: 20,
-              backgroundColor: 'green',
-              borderRadius: 10
-            }}
-          >
-            {days.map(day => (
-              <Pressable
-                key={day.key}
-                onPress={() => toggleDay(day.key)}
-                style={{
-                  backgroundColor: selectedDays[day.key] ? '#fff' : 'transparent',
-                  padding: 12,
-                }}
-              >
-                <Text style={{ color: selectedDays[day.key] ? '#000' : '#fff' }}>
-                  {day.label}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
-  )
-}
+import { WeekDaysSelector } from './WeekDaysSelector'
 
 export const AddTasks = () => {
-
-  const days = [
-    { key: 'dom', label: 'Dom' },
-    { key: 'seg', label: 'Seg' },
-    { key: 'ter', label: 'Ter' },
-    { key: 'qua', label: 'Qua' },
-    { key: 'qui', label: 'Qui' },
-    { key: 'sex', label: 'Sex' },
-    { key: 'sab', label: 'Sáb' },
-  ]
 
   const {AddedTask, setAddedTask, description, setDescription, showWeekDaysSelector, setShowWeekDaysSelector} = useContext(GlobalContext)
 
@@ -97,7 +59,6 @@ export const AddTasks = () => {
         <DropdownExibitionPattern />
         {showWeekDaysSelector && (
           <WeekDaysSelector
-            days={days}
             selectedDays={selectedDays}
             toggleDay={toggleDay}
           />

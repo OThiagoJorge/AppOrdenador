@@ -6,12 +6,10 @@ import { GlobalContext } from '../resources/Context'
 import { listTasks } from '@/resources/database'
 
 export const CalendarScreen = () => {
-    // Todas as datas devem estar selecionadas por padrão, sendo possível realizar algumas
-    // seleções específicas por meio de um menu de opções na parte inferior da tela
-    // Inspire-se em outros apps, como despertadores ou agendas para esse caso
+    // Futuramente permitir que seja escolhido um dia de 'folga', adiando automaticamente as tarefas que não necessitam ser feitas naquele dia, para o próximo dia útil. Talvez seja necessário criar um campo 'isHoliday' ou algo do tipo para cada tarefa, para que o sistema saiba quais tarefas podem ser adiadas e quais não podem. Talvez seja necessário também criar um campo 'isPostponed' para cada tarefa, para que o sistema saiba quais tarefas já foram adiadas e não as adie novamente. Talvez seja necessário também criar um campo 'postponedDate' para cada tarefa, para que o sistema saiba para qual data a tarefa foi adiada. 
     const navigation = useNavigation()
 
-    const {AddedTask, setAddedTask} = useContext(GlobalContext)
+    const {AddedTask, setAddedTask, todayDate, setTodayDate} = useContext(GlobalContext)
 
     const [Tasks, setTasks] = useState([])
 
@@ -24,16 +22,26 @@ export const CalendarScreen = () => {
         console.log(Tasks)
     }, [AddedTask])
 
+    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
+
     return (
         <>
             <Calendar
                 onDayPress={day => {
                     console.log('selected day', day)
+                    setSelectedDate(day.dateString)
                     const todayTasks = Tasks.filter(task => {
                         return task.everyDay === true
                     })
                     console.log('Tasks for selected day:', todayTasks)
                     navigation.navigate('Home')
+                    const formattedSelectedDate = new Date(day.timestamp)
+                    formattedSelectedDate.setDate(formattedSelectedDate.getDate() + 1)
+                    console.log('Today date:', todayDate, 'Selected date:', formattedSelectedDate)
+                    setTodayDate(formattedSelectedDate)                    
+                }}
+                markedDates={{
+                    [selectedDate]: { selected: true, selectedColor: '#2196F3' }
                 }}
             />
             <Button
