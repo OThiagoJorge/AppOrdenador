@@ -21,19 +21,20 @@ export async function createTable() {
       description TEXT,
       completed BOOLEAN DEFAULT FALSE,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      everyDay BOOLEAN
+      everyDay BOOLEAN,
+      deleted BOOLEAN DEFAULT FALSE
     )
   `)
 
-  console.log('Tabela criada com sucesso')
+  console.log('Tabela criada com sucesso -se já não existia')
 }
 
-export async function insertTask(title, description, completed, everyDay) {
+export async function insertTask(title, description, completed, everyDay, deleted) {
   const db = await getDB()
 
   const result = await db.runAsync(
-    'INSERT INTO tasks (title, description, completed, everyDay) VALUES (?, ?, ?, ?)',
-    [title, description, completed, everyDay]
+    'INSERT INTO tasks (title, description, completed, everyDay, deleted) VALUES (?, ?, ?, ?, ?)',
+    [title, description, completed, everyDay, deleted]
   )
 
   console.log('Tarefa inserida com ID:', result.lastInsertRowId)
@@ -51,12 +52,12 @@ export async function listTasks() {
   return tasks
 }
 
-export async function updateTask(id, title, description, completed, everyDay) {
+export async function updateTask(id, title, description, completed, everyDay, deleted) {
   const db = await getDB()
 
   await db.runAsync(
-    'UPDATE tasks SET title = ?, description = ?, completed = ?, everyDay = ? WHERE id = ?',
-    [title, description, completed, everyDay, id]
+    'UPDATE tasks SET title = ?, description = ?, completed = ?, everyDay = ?, deleted = ? WHERE id = ?',
+    [title, description, completed, everyDay, deleted, id]
   )
 
   console.log('Tarefa atualizada com ID:', id)

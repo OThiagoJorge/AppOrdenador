@@ -55,7 +55,7 @@ export const Tasks = () => {
                 orientation='vertical'
                 ref={refPagerView}
             >
-                {Tasks.map((task, i) => (
+                 {Tasks.filter(task => task.deleted === false || task.deleted === 0).map((task, i) => (
                     <TaskCard 
                         key={i}
                         task={task}
@@ -67,13 +67,13 @@ export const Tasks = () => {
     )} else {
         return (
             <ScrollView style={styles.scrollView}>
-                {Tasks.map((task, i) => (
-                    <TaskInListMode 
-                        key={i}
-                        task={task}
-                        i={i}
-                    />
-                ))}
+                {Tasks.filter(task => task.deleted === false || task.deleted === 0).map((task, i) => (
+                                <TaskInListMode 
+                                key={i}
+                                task={task}                                
+                                i={i}
+                                />
+                            ))}
             </ScrollView>
         )
     }

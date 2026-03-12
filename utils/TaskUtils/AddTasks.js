@@ -2,7 +2,7 @@ import { Text, TextInput, View, Pressable } from 'react-native'
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '@/resources/Context'
 import { styles } from '@/Styles'
-import { insertTask } from '@/resources/database'
+import { insertTask, dropTable, createTable } from '@/resources/database'
 import { DropdownExibitionPattern } from './DropdownExibitionPattern'
 import { Calendar } from 'react-native-calendars'
 import { WeekDaysSelector } from './WeekDaysSelector'
@@ -87,8 +87,9 @@ export const AddTasks = () => {
             }}            
         />        
         <Pressable
-            onPress={() => {
-                insertTask(text, description, false, true)
+            onPress={() => {                
+                createTable()
+                insertTask(text, description, false, true, false)
                 setAddedTask(!AddedTask)
             }}      
             style={[styles.button, {bottom: 0, position: 'absolute'}]}

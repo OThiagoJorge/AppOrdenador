@@ -7,30 +7,35 @@ import { listTasks } from '@/resources/database'
 
 export const TrashScreen = () => {
 
-    const {AddedTask, setAddedTask} = useContext(GlobalContext)
     const {isChecked, setChecked} = useContext(GlobalContext)
-
-    const [Tasks, setTasks] = useState([])
+        const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
+        const {Tasks, setTasks} = useContext(GlobalContext)
 
     useEffect(() => {
-        const loadData = async () => {
-          const value = listTasks()
-          if (value) {setTasks(task => [...task, value])}
+            loadTasks()
+        }, [taskDidUpdate])      
+        
+        const loadTasks = async () => {
+            try{
+                const data = await listTasks()
+                if (Array.isArray(data)) {
+                    setTasks(data)
+                }
+            }catch(error){
+                console.error('Erro ao listar tarefas:', error)
+            }
         }
-        loadData()
-        console.log(Tasks)
-    }, [AddedTask])
 
         return (
             <ScrollView style={styles.scrollView}>
-                {Tasks.map((task, i) => (
-                    <TaskInListMode 
-                        key={i}
-                        task={task}
-                        isChecked={isChecked}
-                        i={i}
-                    />
-                ))}
+            {Tasks.filter(task => task.deleted === true || task.deleted === 1).map((task, i) => (
+                <TaskInListMode 
+                key={i}
+                task={task}
+                isChecked={isChecked}
+                i={i}
+                />
+            ))}
             </ScrollView>
         )
 }

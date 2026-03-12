@@ -14,6 +14,7 @@ export const MoreOptionUpperBar = () => {
   const navigation = useNavigation()
 
   const {showTimer, setShowTimer} = useContext(GlobalContext)
+  const {trashScreenHaveBeenAccessed, setTrashScreenHaveBeenAccessed} = useContext(GlobalContext)
 
   return (
     <Pressable 
@@ -33,7 +34,10 @@ export const MoreOptionUpperBar = () => {
               text='Calendário' 
             />
             <MenuOption 
-              onSelect={() => navigation.navigate('Trash')} 
+              onSelect={() => {
+                navigation.navigate('Trash')
+                setTrashScreenHaveBeenAccessed(!trashScreenHaveBeenAccessed)
+              }} 
               text='Lixeira' 
             />
             {!showTimer ? (

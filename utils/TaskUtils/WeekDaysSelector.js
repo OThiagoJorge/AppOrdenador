@@ -1,5 +1,4 @@
 import { Text, View, Pressable } from 'react-native'
-import { WeekDaysSelector } from './WeekDaysSelector'
 
 export const WeekDaysSelector = ({selectedDays, toggleDay}) => {
 
