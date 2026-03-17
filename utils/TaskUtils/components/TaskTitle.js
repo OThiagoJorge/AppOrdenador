@@ -25,7 +25,7 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                         fontSize: 20,
                         backgroundColor: inListMode || taskTitleInputIsVisible ? 'gray' : 'yellow',
                         color: inListMode || taskTitleInputIsVisible ? 'white' : 'black',
-                        textDecorationLine: task.completed ? 'line-through' : 'none',
+                        textDecorationLine: task.completed ? 'line-through' : 'none'
                     }}
                     value={title}
                     placeholder={task.title}
