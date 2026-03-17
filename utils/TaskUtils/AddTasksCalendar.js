@@ -1,20 +1,124 @@
 import { Calendar } from "react-native-calendars"
+import React, { useEffect, useState } from "react"
+import { Button, View } from "react-native"
 
 export const AddTasksCalendar = () => {
-  return (
-    <Calendar
-          onDayPress={day => {
-              console.log('selected day', day)
-          }}
-          markingType='period'
-          markedDates={{
-            '2026-03-20': {textColor: 'green'},
-            '2026-03-22': {startingDay: true, color: 'green', textColor: 'white'},
-            '2026-03-23': {color: 'green', textColor: 'white'},
-            '2026-03-24': {color: 'green', textColor: 'white'},
-            '2026-03-25': {endingDay: true, color: 'green', textColor: 'white'},
-            '2026-03-04': {disabled: true, startingDay: true, color: 'green', endingDay: true}
-          }}            
-      /> 
-  )
+
+    const [selectedDates, setSelectedDates] = useState([
+        { position: 0, date: null, filled: false },
+        { position: 1, date: null, filled: false }
+    ])
+
+    const [markedDates, setMarkedDates] = useState({})
+
+    function generateDateRange(start, end) {
+
+        const dates = {}
+        const startDate = new Date(start)
+        const endDate = new Date(end)
+
+        let current = new Date(startDate)
+
+        while (current <= endDate) {
+
+            const dateString = current.toISOString().split('T')[0]
+
+            if (dateString === start) {
+                dates[dateString] = {
+                    startingDay: true,
+                    color: 'blue',
+                    textColor: 'white'
+                }
+            } else if (dateString === end) {
+                dates[dateString] = {
+                    endingDay: true,
+                    color: 'blue',
+                    textColor: 'white'
+                }
+            } else {
+                dates[dateString] = {
+                    color: 'blue',
+                    textColor: 'white'
+                }
+            }
+
+            current.setDate(current.getDate() + 1)
+        }
+
+        return dates
+    }
+
+    function handleDayPress(day) {
+
+        const date = day.dateString
+
+        setSelectedDates(prev => {
+
+            const first = prev[0]
+            const second = prev[1]
+
+            // primeira data ainda não selecionada
+            if (!first.filled) {
+                return [
+                    { ...first, date, filled: true },
+                    second
+                ]
+            }
+
+            // primeira já existe -> altera apenas a segunda
+            return [
+                first,
+                { ...second, date, filled: true }
+            ]
+        })
+    }
+
+    function resetDates() {
+        setSelectedDates([
+            { position: 0, date: null, filled: false },
+            { position: 1, date: null, filled: false }
+        ])
+        setMarkedDates({})
+    }
+
+    useEffect(() => {
+
+        const start = selectedDates[0].date
+        const end = selectedDates[1].date
+
+        if (!start) return
+
+        if (!end) {
+            setMarkedDates({
+                [start]: {
+                    startingDay: true,
+                    endingDay: true,
+                    color: 'blue',
+                    textColor: 'white'
+                }
+            })
+            return
+        }
+
+        const range = generateDateRange(start, end)
+
+        setMarkedDates(range)
+
+    }, [selectedDates])
+
+
+    return (
+        <View>
+            <Calendar
+                markingType={'period'}
+                markedDates={markedDates}
+                onDayPress={handleDayPress}
+            />
+
+            <Button
+                title="Resetar"
+                onPress={resetDates}
+            />
+        </View>
+    )
 }
