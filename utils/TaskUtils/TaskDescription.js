@@ -22,7 +22,12 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
                 onLongPress={() => setDescriptionInputIsVisible(!descriptionInputIsVisible)}
             >
                 <TextInput
-                    style={[styles.input, {color: 'white'}]}
+                    style={[styles.input, 
+                        {   
+                            color: 'white',
+                            textDecorationLine: task.completed ? 'line-through' : 'none'
+                        }
+                    ]}
                     onChangeText={(text) => setDescription(text)}
                     value={description}
                     placeholder="Descrição"

@@ -46,6 +46,16 @@ export const TaskInListMode = ({task, i}) => {
                         } 
                         text='Excluir' 
                     />
+                    <MenuOption 
+                        onSelect={
+                            () => updateTask(task.id, task.title, task.description, task.completed, task.everyDay, false)
+                            .then(() => {
+                                setTaskDidUpdate(!taskDidUpdate)
+                                console.log('Tarefa restaurada:', task)
+                            })                            
+                        } 
+                        text='Restaurar' 
+                    />
                 </MenuOptions>                    
             </Menu>
             )}

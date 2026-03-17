@@ -3,8 +3,7 @@ import React, { useContext } from 'react'
 import { styles } from '@/Styles'
 import { GlobalContext } from '../resources/Context'
 import BouncyCheckbox from "react-native-bouncy-checkbox"
-import { insertTask } from '@/resources/database'
-import { updateTask } from '@/resources/database'
+import { insertTask, updateTask } from '@/resources/database'
 
 export const CheckOrHalfCheck = ({task, goToAnotherPage, i}) => {
 
@@ -30,7 +29,7 @@ export const CheckOrHalfCheck = ({task, goToAnotherPage, i}) => {
                 isChecked={task.completed}
                 onPress={() => {
                     let completed = !task.completed
-                    updateTask(task.id, task.title, task.description, completed, task.everyDay)
+                    updateTask(task.id, task.title, task.description, completed, task.everyDay, task.deleted)
                     setTimeout(() => {
                         goToAnotherPage(i + 1)
                     }, 7000)
