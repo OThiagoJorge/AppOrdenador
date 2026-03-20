@@ -68,12 +68,12 @@ export const Tasks = () => {
         return (
             <ScrollView style={styles.scrollView}>
                 {Tasks.filter(task => task.deleted === false || task.deleted === 0).map((task, i) => (
-                                <TaskInListMode 
-                                key={i}
-                                task={task}                                
-                                i={i}
-                                />
-                            ))}
+                    <TaskInListMode 
+                        key={i}
+                        task={task}                                
+                        i={i}
+                    />
+                ))}
             </ScrollView>
         )
     }

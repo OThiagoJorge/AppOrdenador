@@ -81,15 +81,15 @@ export const TaskCard = ({task, goToAnotherPage, i}) => {
                     color='red'
                     height={30}
                     useNativeDriver={false}               
-                />
-                <TaskTitleAndDescription 
-                    task={task} 
-                />
+                />                
                 <CheckOrHalfCheck 
                     task={task} 
                     goToAnotherPage={goToAnotherPage}
                     i={i}
-                />
+                />               
+                <TaskTitleAndDescription 
+                    task={task} 
+                /> 
             </Pressable>
         </View>
 )}

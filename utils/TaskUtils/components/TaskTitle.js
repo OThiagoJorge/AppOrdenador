@@ -11,12 +11,16 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
 
     const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
 
+    const getTaskId = () => {
+        return task.id < 10 ? `#0${task.id}` : `#${task.id}`
+    }
+
     return (
         <View>
             <Pressable 
                 style={{
-                    marginLeft: inListMode ? 20 : 60,
-                    width: inListMode ? '100%' : '70%'
+                    marginLeft: inListMode ? 20 : 30,
+                    width: '100%'
                 }}
                 onLongPress={() => setTaskTitleInputIsVisible(!taskTitleInputIsVisible)}
             >            
@@ -27,8 +31,8 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                         color: inListMode || taskTitleInputIsVisible ? 'white' : 'black',
                         textDecorationLine: task.completed ? 'line-through' : 'none'
                     }}
-                    value={title}
-                    placeholder={task.title}
+                    value={`${title} ${getTaskId()}`}
+                    placeholder={`${task.title} ${getTaskId()}`}
                     editable={taskTitleInputIsVisible}
                     multiline={true}
                     onChangeText={(text) => setTitle(text)}

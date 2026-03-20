@@ -11,7 +11,7 @@ export const TaskTitleAndDescription = ( {task} ) => {
 
     return (
         <View
-            style={{flexDirection: 'column', width: '80%', paddingVertical: 10}}
+            style={{width: '100%', position: 'absolute', top: 0, left: 0}}
         >
             <TaskTitle 
                 task={task} 
