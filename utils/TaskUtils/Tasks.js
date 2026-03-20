@@ -1,5 +1,5 @@
 import { ScrollView } from 'react-native'
-import React, {useState, useEffect, useContext, useRef, use} from 'react'
+import React, { useEffect, useContext, useRef } from 'react'
 import { styles } from '@/Styles'
 import { GlobalContext } from '@/resources/Context'
 import  PagerView  from 'react-native-pager-view'
@@ -15,7 +15,6 @@ export const Tasks = () => {
     }
 
     const {isCard, setIsCard} = useContext(GlobalContext)
-    const {arrowIsClicked, setArrowIsClicked} = useContext(GlobalContext)
     const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
     const {Tasks, setTasks} = useContext(GlobalContext)
     const {completedPercentage, setCompletedPercentage} = useContext(GlobalContext)
@@ -47,7 +46,7 @@ export const Tasks = () => {
         }
     }
 
-    if(isCard && !arrowIsClicked) {
+    if(isCard) {
         return (
             <PagerView 
                 style={styles.pagerView} 

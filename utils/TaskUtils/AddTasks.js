@@ -9,7 +9,7 @@ import { AddTasksCalendar } from './AddTasksCalendar'
 
 export const AddTasks = () => {
 
-  const {AddedTask, setAddedTask, description, setDescription, showWeekDaysSelector, setShowWeekDaysSelector} = useContext(GlobalContext)
+  const {AddedTask, setAddedTask, description, setDescription, showWeekDaysSelector, setShowWeekDaysSelector, taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
 
   const [text, setText] = useState('')
   const [count, setCount] = useState(0)
@@ -78,6 +78,7 @@ export const AddTasks = () => {
                 createTable()
                 insertTask(text, description, false, true, false)
                 setAddedTask(!AddedTask)
+                setTaskDidUpdate(!taskDidUpdate)
             }}      
             style={[styles.button, {bottom: 0, position: 'absolute'}]}
         >

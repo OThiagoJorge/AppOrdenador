@@ -11,7 +11,7 @@ import { MoreOptionUpperBar } from './MoreOptionsUpperBar'
 export const UpperBar = () => {
   const navigation = useNavigation()
 
-  const {isCard, setIsCard, todayDate, setTodayDate} = useContext(GlobalContext)
+  const {isCard, setIsCard, todayDate, setTodayDate, trashScreenHaveBeenAccessed} = useContext(GlobalContext)
 
   const formatDate = (d) => {
     const day = String(d.getDate()).padStart(2, "0")
@@ -27,26 +27,28 @@ export const UpperBar = () => {
         date={todayDate}
         setDate={setTodayDate}
       />
-      <Pressable 
-        style={{position: 'absolute', left: 40}}
-        onPress={() => {
-          setIsCard(!isCard)
-        }}
-      >
-        {isCard ? 
-          <FontAwesome 
-            name="list" 
-            size={24} 
-            color="black" 
-          /> 
-        : 
-          <MaterialCommunityIcons 
-            name="mirror-rectangle" 
-            size={24} 
-            color="black" 
-          />
-        }
-      </Pressable>
+      {!trashScreenHaveBeenAccessed &&
+        <Pressable 
+          style={{position: 'absolute', left: 40}}
+          onPress={() => {
+            setIsCard(!isCard)
+          }}
+        >
+          {isCard ? 
+            <FontAwesome 
+              name="list" 
+              size={24} 
+              color="black" 
+            /> 
+          : 
+            <MaterialCommunityIcons 
+              name="mirror-rectangle" 
+              size={24} 
+              color="black" 
+            />
+          }
+        </Pressable>
+      }      
       <Pressable
         onPress={() => navigation.navigate('Calendar')}
       >

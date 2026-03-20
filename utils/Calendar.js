@@ -41,7 +41,12 @@ export const CalendarScreen = () => {
                     setTodayDate(formattedSelectedDate)                    
                 }}
                 markedDates={{
-                    [selectedDate]: { selected: true, selectedColor: '#2196F3' }
+                    [(() => {                    
+                        const date = new Date(todayDate)
+                        date.setDate(date.getDate() - 1)
+                        return date.toISOString().split('T')[0]})
+                    || 
+                        selectedDate]: { selected: true, selectedColor: '#2196F3' }
                 }}
             />
             <Button
