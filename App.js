@@ -10,6 +10,7 @@ import { TrashScreen } from './utils/TrashScreen'
 import { ProgressScreen } from './utils/ProgressScreen'
 import { AddTasks } from './utils/TaskUtils/AddTasks'
 import { LocaleConfig } from 'react-native-calendars'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 LocaleConfig.locales['pt-br'] = {
   monthNames: [
@@ -36,7 +37,7 @@ export const HomeScreen = () => {
       <Main />
     )
 }
-
+// In future change to use bottom tab navigator for better UX, but for now stack is good enough
 const RootStack = createNativeStackNavigator({
   initialRouteName: 'Home',
   screens: {
