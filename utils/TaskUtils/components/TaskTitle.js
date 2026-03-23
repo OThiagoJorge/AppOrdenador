@@ -27,8 +27,8 @@ export const TaskTitle = ({ task, taskTitleInputIsVisible, setTaskTitleInputIsVi
                 <TextInput
                     style={{
                         fontSize: 20,
-                        backgroundColor: inListMode || taskTitleInputIsVisible ? 'gray' : 'yellow',
-                        color: inListMode || taskTitleInputIsVisible ? 'white' : 'black',
+                        backgroundColor: inListMode || taskTitleInputIsVisible ? '#f0f0f0' : 'yellow',
+                        color: 'black',
                         textDecorationLine: task.completed ? 'line-through' : 'none'
                     }}
                     value={`${title} ${getTaskId()}`}

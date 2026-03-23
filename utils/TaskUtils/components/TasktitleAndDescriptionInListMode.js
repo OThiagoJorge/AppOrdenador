@@ -36,33 +36,7 @@ export const TaskTitleAndDescriptionInListMode = ({task}) => {
                         onChangeText={onChangeText} 
                         inListMode={true} 
                     />
-                </Pressable>
-                <Modal
-                    style={{marginTop: 100}}
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        setModalVisible(!modalVisible)
-                    }}
-                >
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <TaskDescription 
-                                task={task} 
-                                descriptionInputIsVisible={descriptionInputIsVisible} 
-                                setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
-                                onChangeText={onChangeText}
-                            />
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.textStyle}>fechar</Text>
-                            </Pressable>
-                        </View>
-                    </View>
-                </Modal>
+                </Pressable>                
             </View>
     )
 }

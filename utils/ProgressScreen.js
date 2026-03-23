@@ -9,7 +9,7 @@ export const ProgressScreen = () => {
         {
             value: 10, date: '19/03', 
             label: '10 Março',
-            labelTextStyle: {color: 'lightgray', width: 60}
+            labelTextStyle: {color: 'black', width: 60}
         },
         {value: 7, date: '20/03'},
         {value: 7, date: '21/03'},
@@ -33,6 +33,9 @@ export const ProgressScreen = () => {
         backgroundColor: 'white'
       }}
     >
+        <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 20, marginLeft: 10}}>
+            Progresso diário
+        </Text>
         <LineChart
             areaChart
             data={ptData}

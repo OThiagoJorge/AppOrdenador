@@ -40,7 +40,7 @@ export const Tasks = () => {
 
     const calculusCompletedPercentage = async () => {
         if (Tasks.length > 0) {
-            const percentage = (Tasks.filter(task => task.completed).length / Tasks.length) * 100
+            const percentage = (Tasks.filter(task => task.completed && task.deleted === 0).length / Tasks.filter(task => task.deleted === 0).length) * 100
             setCompletedPercentage(percentage)
             console.log('Completed Percentage:', percentage)
         }

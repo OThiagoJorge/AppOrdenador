@@ -26,18 +26,18 @@ export const AddTasksCalendar = () => {
             if (dateString === start) {
                 dates[dateString] = {
                     startingDay: true,
-                    color: 'blue',
+                    color: '#0a7e8c',
                     textColor: 'white'
                 }
             } else if (dateString === end) {
                 dates[dateString] = {
                     endingDay: true,
-                    color: 'blue',
+                    color: '#0a7e8c',
                     textColor: 'white'
                 }
             } else {
                 dates[dateString] = {
-                    color: 'blue',
+                    color: '#0a7e8c',
                     textColor: 'white'
                 }
             }
@@ -93,7 +93,7 @@ export const AddTasksCalendar = () => {
                 [start]: {
                     startingDay: true,
                     endingDay: true,
-                    color: 'blue',
+                    color: '#0a7e8c',
                     textColor: 'white'
                 }
             })
