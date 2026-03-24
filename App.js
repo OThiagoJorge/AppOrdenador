@@ -78,7 +78,7 @@ export default function App() {
   return (
     <ContextProvider>
       <MenuProvider>
-        <SafeAreaView style={{flex: 1, backgroundColor: '#f3f4f6', borderWidth: 0}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: '#f3f4f6', borderWidth: 0}} edges={['bottom']}>
           <Navigation />
         </SafeAreaView>
       </MenuProvider>

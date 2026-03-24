@@ -1,7 +1,10 @@
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { Pressable } from 'react-native'
+import React, { useState } from 'react'
 
 export const ProgressRotation = ({task}) => {
+    const [fill, setFill] = useState(false)
+
     return (
         <Pressable
             style={{
@@ -12,7 +15,7 @@ export const ProgressRotation = ({task}) => {
                 opacity: task.completed ? 1 : 0,
                 position: 'absolute',
                 right: 5,
-                top: 5,
+                bottom: 12,
                 zIndex: 1,
                 transition: '7s'
             }}
@@ -22,8 +25,11 @@ export const ProgressRotation = ({task}) => {
                 size={55}
                 width={5}
                 fill={task.completed ? 100 : 0}
-                tintColor="#0a7e8c"
-                onAnimationComplete={() => console.log('onAnimationComplete')}
+                tintColor= {fill ? "#0a7e8c" : "transparent"}
+                onAnimationComplete={() => {
+                    console.log('onAnimationComplete')
+                    setFill(!fill)
+                }}
                 backgroundColor="transparent"
             >
             </AnimatedCircularProgress>

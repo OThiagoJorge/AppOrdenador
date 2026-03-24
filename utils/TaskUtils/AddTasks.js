@@ -1,4 +1,4 @@
-import { Text, TextInput, View, Pressable } from 'react-native'
+import { Text, TextInput, View, Pressable, ScrollView } from 'react-native'
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '@/resources/Context'
 import { styles } from '@/Styles'
@@ -42,6 +42,7 @@ export const AddTasks = () => {
     <View
         style={{flex: 1, height: '100%', backgroundColor: '#f3f4f6', alignItems: 'center'}}     
     >
+        <ScrollView style={{width: '100%', padding: 20, marginBottom: 75}}>
         <TextInput
             style={{width: '100%', height: 40, padding: 5}}
             placeholder="Título"
@@ -73,6 +74,7 @@ export const AddTasks = () => {
           </Pressable>
         </View>
         <AddTasksCalendar />
+        </ScrollView>
         <Pressable
             onPress={() => {                
                 createTable()
@@ -83,6 +85,6 @@ export const AddTasks = () => {
             style={[styles.button, {bottom: 0, position: 'absolute'}]}
         >
           <Text style={styles.text}>+ Adicionar tarefa</Text>
-        </Pressable>       
+        </Pressable>               
     </View>
 )}
