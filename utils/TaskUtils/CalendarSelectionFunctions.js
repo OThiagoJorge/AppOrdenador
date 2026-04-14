@@ -32,7 +32,7 @@ export const generateDateRange = (start, end) => {
     return dates
 }
 
-export const handleDayPress = (day) => {
+export const handleDayPress = (day, setSelectedDates) => {
 
     const date = day.dateString
 

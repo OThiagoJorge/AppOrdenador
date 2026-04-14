@@ -1,14 +1,12 @@
 import { Calendar } from "react-native-calendars"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { Button, View } from "react-native"
 import { generateDateRange, handleDayPress } from "./CalendarSelectionFunctions"
+import { GlobalContext } from '@/resources/Context'
 
 export const AddTasksCalendar = () => {
 
-    const [selectedDates, setSelectedDates] = useState([
-        { position: 0, date: null, filled: false },
-        { position: 1, date: null, filled: false }
-    ])
+    const {selectedDates, setSelectedDates} = useContext(GlobalContext)
 
     const [markedDates, setMarkedDates] = useState({})    
 
@@ -52,7 +50,7 @@ export const AddTasksCalendar = () => {
             <Calendar
                 markingType={'period'}
                 markedDates={markedDates}
-                onDayPress={handleDayPress}
+                onDayPress={handleDayPress(day, setSelectedDates)}
             />    
             <Button
                 title="Resetar"

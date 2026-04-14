@@ -14,22 +14,7 @@ export const TaskCard = ({task, goToAnotherPage, i}) => {
     const [modalVisible, setModalVisible] = useState(false)
 
     const {showTimer, setShowTimer} = useContext(GlobalContext)
-    const {taskTitleInputIsVisible, setTaskTitleInputIsVisible, descriptionInputIsVisible, setDescriptionInputIsVisible} = useContext(GlobalContext)
-
-    const [timerCount, setTimer] = useState(60)
-    
-    useEffect(() => {
-        let interval = setInterval(() => {
-            setTimer(lastTimerCount => {
-                if (lastTimerCount == 0) {
-                } else {
-                    lastTimerCount <= 1 && clearInterval(interval)
-                    return lastTimerCount - 1
-                }
-            })
-        }, 1000)
-        return () => clearInterval(interval)
-    }, [showTimer])
+    const {taskTitleInputIsVisible, setTaskTitleInputIsVisible, descriptionInputIsVisible, setDescriptionInputIsVisible} = useContext(GlobalContext)    
 
     return ( 
         <View 

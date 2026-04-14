@@ -17,6 +17,10 @@ export const ContextProvider = ({children}) => {
     const [showWeekDaysSelector, setShowWeekDaysSelector] = useState(false)
     const [todayDate, setTodayDate] = useState(new Date())
     const [trashScreenHaveBeenAccessed, setTrashScreenHaveBeenAccessed] = useState(false)
+    const [selectedDates, setSelectedDates] = useState([
+        { position: 0, date: null, filled: false },
+        { position: 1, date: null, filled: false }
+    ])
 
     return (
         <GlobalContext 
@@ -33,7 +37,8 @@ export const ContextProvider = ({children}) => {
                 completedPercentage, setCompletedPercentage,
                 showWeekDaysSelector, setShowWeekDaysSelector,
                 todayDate, setTodayDate,
-                trashScreenHaveBeenAccessed, setTrashScreenHaveBeenAccessed                
+                trashScreenHaveBeenAccessed, setTrashScreenHaveBeenAccessed,
+                selectedDates, setSelectedDates
         }}>
             {children}
         </GlobalContext>

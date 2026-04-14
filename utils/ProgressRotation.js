@@ -3,7 +3,7 @@ import { Pressable } from 'react-native'
 import React, { useState } from 'react'
 
 export const ProgressRotation = ({task}) => {
-    const [fill, setFill] = useState(false)
+    const [fill, setFill] = useState(true)
 
     return (
         <Pressable
