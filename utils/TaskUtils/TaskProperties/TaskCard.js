@@ -1,13 +1,14 @@
 import { Pressable, View } from 'react-native'
 import { styles } from '@/Styles'
-import { ProgressRotation } from '../ProgressRotation'
-import { CheckOrHalfCheck } from '../CheckOrHalfCheck'
+import { ProgressRotation } from '../../ProgressRotation'
+import { CheckOrHalfCheck } from '../../CheckOrHalfCheck'
 import * as Progress from 'react-native-progress'
-import React, {useState, useEffect, useContext} from 'react'
-import { AskToSeeProgressModal } from './components/AskToSeePogressModal'
+import React, {useState, useContext} from 'react'
+import { AskToSeeProgressModal } from '../components/AskToSeePogressModal'
 import { GlobalContext } from '@/resources/Context'
-import { TaskTitleAndDescription } from './components/TaskTitleAndDescription'
-import { Timer } from './components/Timer'
+import { TaskTitleAndDescription } from '../components/TaskTitleAndDescription'
+import { Timer } from '../components/Timer'
+import { TaskDescription } from './TaskDescription'
 
 export const TaskCard = ({task, goToAnotherPage, i}) => {
 
@@ -74,7 +75,12 @@ export const TaskCard = ({task, goToAnotherPage, i}) => {
                 />               
                 <TaskTitleAndDescription 
                     task={task} 
-                /> 
+                />
+                <TaskDescription
+                    task={task} 
+                    descriptionInputIsVisible={descriptionInputIsVisible} 
+                    setDescriptionInputIsVisible={setDescriptionInputIsVisible} 
+                />
             </Pressable>
         </View>
 )}

@@ -8,7 +8,7 @@ import { UpperBar } from './resources/UpperBar'
 import { MenuProvider } from 'react-native-popup-menu'
 import { TrashScreen } from './utils/TrashScreen'
 import { ProgressScreen } from './utils/ProgressScreen'
-import { AddTasks } from './utils/TaskUtils/AddTasks'
+import { AddTasks } from './utils/TaskUtils/TaskProperties/AddTasks'
 import { LocaleConfig } from 'react-native-calendars'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 

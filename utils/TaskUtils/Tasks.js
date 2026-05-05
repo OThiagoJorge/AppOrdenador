@@ -3,7 +3,7 @@ import React, { useEffect, useContext, useRef } from 'react'
 import { styles } from '@/Styles'
 import { GlobalContext } from '@/resources/Context'
 import  PagerView  from 'react-native-pager-view'
-import { TaskCard } from './TaskCard'
+import { TaskCard } from './TaskProperties/TaskCard'
 import { TaskInListMode } from './components/TaskInListMode'
 import { listTasks } from '@/resources/database'
 

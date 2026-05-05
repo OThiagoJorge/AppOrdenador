@@ -1,7 +1,7 @@
 import { Calendar } from "react-native-calendars"
 import React, { useEffect, useState, useContext } from "react"
 import { Button, View } from "react-native"
-import { generateDateRange, handleDayPress } from "./CalendarSelectionFunctions"
+import { generateDateRange, handleDayPress } from "../CalendarSelectionFunctions"
 import { GlobalContext } from '@/resources/Context'
 
 export const AddTasksCalendar = () => {

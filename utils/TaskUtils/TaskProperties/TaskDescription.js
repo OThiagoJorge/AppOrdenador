@@ -14,13 +14,18 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
     return (
         <View>
             <Pressable 
-                style={{
-                    marginLeft: 60,
-                    width: '70%',
-                    backgroundColor: '#0a7e8c'
+                style={{                    
+                    marginLeft: '25%',
+                    marginRight: '15%',
+                    width: '100%',
+                    height: '70%',
+                    backgroundColor: 'white',
+                    borderColor: 'black',
+                    borderWidth: 1,
+                    borderRadius: 10
                 }}
-                onLongPress={() => setDescriptionInputIsVisible(!descriptionInputIsVisible)}
             >
+                <View style={{width: '100%', height: '100%', padding: 10}}>
                 <TextInput
                     style={[styles.input, 
                         {   
@@ -34,15 +39,14 @@ export const TaskDescription = ({task, descriptionInputIsVisible, setDescription
                     editable={descriptionInputIsVisible}
                     multiline={true}
                 />
-                {descriptionInputIsVisible &&
                     <Pressable
                         onPress={() => {
                             setModalVisible(true)
                         }}
                     >
                         <Text>Enviar</Text>
-                    </Pressable>
-                }
+                    </Pressable>        
+                </View>        
             </Pressable>
             <Modal
                 style={{marginTop: 100}}

@@ -3,8 +3,8 @@ import React, { useState, useContext } from 'react'
 import { GlobalContext } from '@/resources/Context'
 import { styles } from '@/Styles'
 import { insertTask, createTable } from '@/resources/database'
-import { DropdownExibitionPattern } from './DropdownExibitionPattern'
-import { WeekDaysSelector } from './WeekDaysSelector'
+import { DropdownExibitionPattern } from '../DropdownExibitionPattern'
+import { WeekDaysSelector } from '../WeekDaysSelector'
 import { AddTasksCalendar } from './AddTasksCalendar'
 
 export const AddTasks = () => {

@@ -1,7 +1,7 @@
 import { Text, Pressable, View, Modal } from 'react-native'
 import React, { useState } from 'react'
 import { TaskTitle } from './TaskTitle'
-import { TaskDescription } from '../TaskDescription'
+import { TaskDescription } from '../TaskProperties/TaskDescription'
 import { styles } from '@/Styles'
 
 export const TaskTitleAndDescriptionInListMode = ({task}) => {
