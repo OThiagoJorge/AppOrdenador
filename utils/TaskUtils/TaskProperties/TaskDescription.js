@@ -1,84 +1,62 @@
-import { Pressable, TextInput, Text, Modal, View } from 'react-native'
-import { styles } from '@/Styles'
-import { useState, useContext } from 'react'
-import { GlobalContext } from '@/resources/Context'
-import { updateTask } from '@/resources/database'
+import { Pressable, TextInput, Text, View, FlatList } from 'react-native'
+import AntDesign from '@expo/vector-icons/AntDesign'
 
-export const TaskDescription = ({task, descriptionInputIsVisible, setDescriptionInputIsVisible, onChangeText}) => {
-
-    const [description, setDescription] = useState(task.description)
-    const [modalVisible, setModalVisible] = useState(false)
-
-    const {taskDidUpdate, setTaskDidUpdate} = useContext(GlobalContext)
-
+export const TaskDescription = () => {
     return (
         <View>
             <Pressable 
                 style={{                    
-                    marginLeft: '25%',
-                    marginRight: '15%',
-                    width: '100%',
-                    height: '70%',
+                    marginLeft: '10%',
+                    width: '80%',
+                    height: '60%',
                     backgroundColor: 'white',
                     borderColor: 'black',
                     borderWidth: 1,
                     borderRadius: 10
                 }}
             >
-                <View style={{width: '100%', height: '100%', padding: 10}}>
-                <TextInput
-                    style={[styles.input, 
-                        {   
-                            color: 'white',
-                            textDecorationLine: task.completed ? 'line-through' : 'none'
+                <View style={{height: '100%', padding: 10}}>
+                    <FlatList
+                        data={[
+                            {key: 'Tarefa 1'},
+                            {key: 'Tarefa 2'},
+                            {key: 'Tarefa 3'},
+                            {key: 'Tarefa 4'},
+                            {key: 'Tarefa 5'},
+                            {key: 'Tarefa 6'},
+                            {key: 'Tarefa 7'},
+                            {key: 'Tarefa 8'},
+                            {key: 'Tarefa 9'},
+                            {key: 'Tarefa 10'}
+                        ]}
+                        renderItem={({item}) => 
+                            <View style={{width: '100%', padding: 10, backgroundColor: '#f3f4f6', marginBottom: 5, borderRadius: 5}}>
+                                <Text>{item.key}</Text>
+                                <Pressable style={{position: 'absolute', right: 10, top: 10}}>
+                                    <Text style={{color: 'black'}}>...</Text>
+                                </Pressable>
+                            </View>
                         }
-                    ]}
-                    onChangeText={(text) => setDescription(text)}
-                    value={description}
-                    placeholder="Descrição"
-                    editable={descriptionInputIsVisible}
-                    multiline={true}
-                />
-                    <Pressable
-                        onPress={() => {
-                            setModalVisible(true)
-                        }}
-                    >
-                        <Text>Enviar</Text>
-                    </Pressable>        
-                </View>        
-            </Pressable>
-            <Modal
-                style={{marginTop: 100}}
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.')
-                    setModalVisible(!modalVisible)
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Alterar Descrição?</Text>
-                        <Pressable
-                            onPress={() => {
-                                updateTask(task.id, {description: description})
-                                setTaskDidUpdate(!taskDidUpdate)
-                                setModalVisible(false)
-                            }}
-                        >
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Sim</Text>
-                        </Pressable>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text style={styles.textStyle}>fechar</Text>
-                        </Pressable>
-                    </View>
+                    />
                 </View>
-            </Modal>
+                    <View style={{width: '100%', padding: 10, backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <TextInput
+                        placeholder="Adicionar item"
+                        style={{
+                            width: '80%',
+                            height: 40,
+                            backgroundColor: 'white',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 5,
+                            paddingHorizontal: 10
+                        }}
+                    />                   
+                    <Pressable>
+                        <AntDesign name="send" size={24} color="black" />
+                    </Pressable>        
+                </View>                       
+            </Pressable>            
         </View>
     )
 }
