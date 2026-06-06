@@ -1,5 +1,7 @@
 import { Pressable, TextInput, Text, View, FlatList } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign'
+import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu'
+import Feather from '@expo/vector-icons/Feather'
 
 export const TaskDescription = () => {
     return (
@@ -32,8 +34,31 @@ export const TaskDescription = () => {
                         renderItem={({item}) => 
                             <View style={{width: '100%', padding: 10, backgroundColor: '#f3f4f6', marginBottom: 5, borderRadius: 5}}>
                                 <Text>{item.key}</Text>
-                                <Pressable style={{position: 'absolute', right: 10, top: 10}}>
-                                    <Text style={{color: 'black'}}>...</Text>
+                                <Pressable 
+                                    style={{position: 'absolute', right: 40}}
+                                >
+                                    <Menu>
+                                    <MenuTrigger>
+                                        <Feather 
+                                        name="more-horizontal" 
+                                        size={24} 
+                                        color="black" 
+                                        />
+                                    </MenuTrigger>
+                                    <MenuOptions style={{padding: 15}}>
+                                        <MenuOption 
+                                        onSelect={() => navigation.navigate('Calendar')} 
+                                        text='Calendário' 
+                                        />
+                                        <MenuOption 
+                                        onSelect={() => {
+                                            navigation.navigate('Trash')
+                                            setTrashScreenHaveBeenAccessed(!trashScreenHaveBeenAccessed)
+                                        }} 
+                                        text='Lixeira' 
+                                        />
+                                    </MenuOptions>
+                                    </Menu>
                                 </Pressable>
                             </View>
                         }

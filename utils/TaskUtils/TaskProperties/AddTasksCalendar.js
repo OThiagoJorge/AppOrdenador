@@ -50,7 +50,6 @@ export const AddTasksCalendar = () => {
             <Calendar
                 markingType={'period'}
                 markedDates={markedDates}
-                onDayPress={handleDayPress(day, setSelectedDates)}
             />    
             <Button
                 title="Resetar"
