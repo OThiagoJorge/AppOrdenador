@@ -22,7 +22,8 @@ export async function createTable() {
       completed BOOLEAN DEFAULT FALSE,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       everyDay BOOLEAN,
-      deleted BOOLEAN DEFAULT FALSE
+      deleted BOOLEAN DEFAULT FALSE,
+      subtasks TEXT
     )
   `)
 

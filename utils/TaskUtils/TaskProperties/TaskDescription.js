@@ -38,33 +38,35 @@ export const TaskDescription = () => {
                                     style={{position: 'absolute', right: 40}}
                                 >
                                     <Menu>
-                                    <MenuTrigger>
-                                        <Feather 
-                                        name="more-horizontal" 
-                                        size={24} 
-                                        color="black" 
-                                        />
-                                    </MenuTrigger>
-                                    <MenuOptions style={{padding: 15}}>
-                                        <MenuOption 
-                                        onSelect={() => navigation.navigate('Calendar')} 
-                                        text='Calendário' 
-                                        />
-                                        <MenuOption 
-                                        onSelect={() => {
-                                            navigation.navigate('Trash')
-                                            setTrashScreenHaveBeenAccessed(!trashScreenHaveBeenAccessed)
-                                        }} 
-                                        text='Lixeira' 
-                                        />
-                                    </MenuOptions>
+                                        <MenuTrigger>
+                                            <Feather 
+                                                name="more-vertical" 
+                                                size={24} 
+                                                color="black" 
+                                            />
+                                        </MenuTrigger>
+                                        <MenuOptions style={{padding: 15}}>
+                                            <MenuOption text='Editar' /> 
+                                            <MenuOption text='Excluir' />                                     
+                                        </MenuOptions>
                                     </Menu>
                                 </Pressable>
                             </View>
                         }
                     />
                 </View>
-                    <View style={{width: '100%', padding: 10, backgroundColor: 'white', borderWidth: 1, borderColor: 'black', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <View 
+                        style={{
+                            width: '100%', 
+                            padding: 10, 
+                            backgroundColor: 'white', 
+                            borderWidth: 1, 
+                            borderColor: 'black', 
+                            borderRadius: 5, 
+                            flexDirection: 'row', 
+                            justifyContent: 'space-between', 
+                            alignItems: 'center'
+                    }}>
                     <TextInput
                         placeholder="Adicionar item"
                         style={{
